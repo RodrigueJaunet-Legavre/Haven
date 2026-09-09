@@ -6,23 +6,94 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXFileReference section */
-		D42CCD0A30501EC000CC90EF /* Ritma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ritma.app; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
+/* Begin PBXBuildFile section */
+		2D5A1174A8EE17FD7321BB35 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF6D088140F380DAEAD404 /* PaywallView.swift */; };
+		443671C0AB3A5A4E2D3A90C0 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB69EF5A0B161FF0F1E6C64 /* SubscriptionManager.swift */; };
+		4E372964DC2AEE40EA79544A /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 13526EB629EE79FB4968A17D /* Products.storekit */; };
+		D42CCD1C30501ECF00CC90EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42CCD1830501ECF00CC90EF /* Assets.xcassets */; };
+		D42CCD1D30501ECF00CC90EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD1930501ECF00CC90EF /* ContentView.swift */; };
+		D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */; };
+		D42CCD3830502E9500CC90EF /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = D42CCD3730502E9500CC90EF /* Supabase */; };
+		D42CCD3C305032DD00CC90EF /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD3B305032D200CC90EF /* SupabaseService.swift */; };
+		D42CCD3E3050358200CC90EF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD3D3050357B00CC90EF /* AuthService.swift */; };
+		D42CCD403050371500CC90EF /* AuthTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD3F3050370C00CC90EF /* AuthTestView.swift */; };
+		D42CCD44305045C000CC90EF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD43305045B200CC90EF /* Colors.swift */; };
+		D42CCD46305046BB00CC90EF /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD45305046B300CC90EF /* Typography.swift */; };
+		D42CCD48305046EA00CC90EF /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD47305046DF00CC90EF /* Animations.swift */; };
+		D42CCD4A305047CD00CC90EF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD49305047BF00CC90EF /* WelcomeView.swift */; };
+		D42CCD4C30504AE700CC90EF /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD4B30504ACA00CC90EF /* PrimaryButtonStyle.swift */; };
+		D49731B630508E16002AFCF1 /* NotificationBillboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731B530508E0D002AFCF1 /* NotificationBillboard.swift */; };
+		D49731B8305159E4002AFCF1 /* StopButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731B7305159E2002AFCF1 /* StopButtonStyle.swift */; };
+		D49731BA3051684D002AFCF1 /* GamesSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731B930516800002AFCF1 /* GamesSelectionView.swift */; };
+		D49731BC30518C5C002AFCF1 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731BB30518C53002AFCF1 /* GameType.swift */; };
+		D49731BE30518C88002AFCF1 /* PracticeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731BD30518C86002AFCF1 /* PracticeDetailsView.swift */; };
+		D49731C030519061002AFCF1 /* PGSIQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731BF3051905C002AFCF1 /* PGSIQuestion.swift */; };
+		D49731C230519074002AFCF1 /* PGSIQuestionnaireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731C130519072002AFCF1 /* PGSIQuestionnaireView.swift */; };
+		D49731C430519095002AFCF1 /* PGSIResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731C330519092002AFCF1 /* PGSIResultsView.swift */; };
+		D49731C6305193FE002AFCF1 /* QuestionIllustration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731C5305193FD002AFCF1 /* QuestionIllustration.swift */; };
+		D49731C83051FB96002AFCF1 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731C73051FB95002AFCF1 /* DashboardView.swift */; };
+		D49731CA3051FBC1002AFCF1 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731C93051FBBD002AFCF1 /* JournalView.swift */; };
+		D49731CC3051FBD0002AFCF1 /* ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731CB3051FBCC002AFCF1 /* ResourcesView.swift */; };
+		D49731CE3051FBE4002AFCF1 /* EmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731CD3051FBE0002AFCF1 /* EmergencyView.swift */; };
+		D49731D03051FBF6002AFCF1 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731CF3051FBF1002AFCF1 /* HomeTabView.swift */; };
+		D49731D23051FDAD002AFCF1 /* BlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731D13051FDA7002AFCF1 /* BlockerView.swift */; };
+		D49731D43051FE73002AFCF1 /* AvatarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731D33051FE6B002AFCF1 /* AvatarConfig.swift */; };
+		D49731D63051FE8D002AFCF1 /* AvatarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731D53051FE7E002AFCF1 /* AvatarStore.swift */; };
+		D49731D83051FEA2002AFCF1 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731D73051FE90002AFCF1 /* AvatarView.swift */; };
+		D49731DA3051FEA6002AFCF1 /* AvatarCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731D93051FEA5002AFCF1 /* AvatarCreatorView.swift */; };
+		D49731DC305202FC002AFCF1 /* BetLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731DB305202FA002AFCF1 /* BetLogEntry.swift */; };
+		D49731DE30520305002AFCF1 /* BetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731DD30520305002AFCF1 /* BetsService.swift */; };
+		D49731E030520317002AFCF1 /* AddBetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731DF30520316002AFCF1 /* AddBetView.swift */; };
+		D49731E2305204C1002AFCF1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731E1305204BF002AFCF1 /* SignUpView.swift */; };
+/* End PBXBuildFile section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		D42CCD0C30501EC000CC90EF /* Ritma */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Ritma;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXFileReference section */
+		10BF6D088140F380DAEAD404 /* PaywallView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		13526EB629EE79FB4968A17D /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Products.storekit; sourceTree = "<group>"; };
+		D42CCD0A30501EC000CC90EF /* Ritma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ritma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D42CCD1830501ECF00CC90EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D42CCD1930501ECF00CC90EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitmaApp.swift; sourceTree = "<group>"; };
+		D42CCD3B305032D200CC90EF /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
+		D42CCD3D3050357B00CC90EF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		D42CCD3F3050370C00CC90EF /* AuthTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTestView.swift; sourceTree = "<group>"; };
+		D42CCD43305045B200CC90EF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D42CCD45305046B300CC90EF /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		D42CCD47305046DF00CC90EF /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		D42CCD49305047BF00CC90EF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		D42CCD4B30504ACA00CC90EF /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		D49731B530508E0D002AFCF1 /* NotificationBillboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBillboard.swift; sourceTree = "<group>"; };
+		D49731B7305159E2002AFCF1 /* StopButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopButtonStyle.swift; sourceTree = "<group>"; };
+		D49731B930516800002AFCF1 /* GamesSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSelectionView.swift; sourceTree = "<group>"; };
+		D49731BB30518C53002AFCF1 /* GameType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
+		D49731BD30518C86002AFCF1 /* PracticeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailsView.swift; sourceTree = "<group>"; };
+		D49731BF3051905C002AFCF1 /* PGSIQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGSIQuestion.swift; sourceTree = "<group>"; };
+		D49731C130519072002AFCF1 /* PGSIQuestionnaireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGSIQuestionnaireView.swift; sourceTree = "<group>"; };
+		D49731C330519092002AFCF1 /* PGSIResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGSIResultsView.swift; sourceTree = "<group>"; };
+		D49731C5305193FD002AFCF1 /* QuestionIllustration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionIllustration.swift; sourceTree = "<group>"; };
+		D49731C73051FB95002AFCF1 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		D49731C93051FBBD002AFCF1 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		D49731CB3051FBCC002AFCF1 /* ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesView.swift; sourceTree = "<group>"; };
+		D49731CD3051FBE0002AFCF1 /* EmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyView.swift; sourceTree = "<group>"; };
+		D49731CF3051FBF1002AFCF1 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		D49731D13051FDA7002AFCF1 /* BlockerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerView.swift; sourceTree = "<group>"; };
+		D49731D33051FE6B002AFCF1 /* AvatarConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarConfig.swift; sourceTree = "<group>"; };
+		D49731D53051FE7E002AFCF1 /* AvatarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarStore.swift; sourceTree = "<group>"; };
+		D49731D73051FE90002AFCF1 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		D49731D93051FEA5002AFCF1 /* AvatarCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCreatorView.swift; sourceTree = "<group>"; };
+		D49731DB305202FA002AFCF1 /* BetLogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetLogEntry.swift; sourceTree = "<group>"; };
+		D49731DD30520305002AFCF1 /* BetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsService.swift; sourceTree = "<group>"; };
+		D49731DF30520316002AFCF1 /* AddBetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBetView.swift; sourceTree = "<group>"; };
+		D49731E1305204BF002AFCF1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		EFB69EF5A0B161FF0F1E6C64 /* SubscriptionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D42CCD0730501EC000CC90EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42CCD3830502E9500CC90EF /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +103,7 @@
 		D42CCD0130501EC000CC90EF = {
 			isa = PBXGroup;
 			children = (
-				D42CCD0C30501EC000CC90EF /* Ritma */,
+				D42CCD1B30501ECF00CC90EF /* Ritma */,
 				D42CCD0B30501EC000CC90EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +114,147 @@
 				D42CCD0A30501EC000CC90EF /* Ritma.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D42CCD1B30501ECF00CC90EF /* Ritma */ = {
+			isa = PBXGroup;
+			children = (
+				D42CCD343050205200CC90EF /* Utils */,
+				D42CCD333050204800CC90EF /* DesignSystem */,
+				D42CCD2D3050200C00CC90EF /* Services */,
+				D42CCD2C3050200200CC90EF /* Models */,
+				D42CCD1F30501ED300CC90EF /* Views */,
+				D42CCD1830501ECF00CC90EF /* Assets.xcassets */,
+				D42CCD1930501ECF00CC90EF /* ContentView.swift */,
+				D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */,
+				ED9E9BE4931A62A5385545A2 /* StoreKit */,
+			);
+			path = Ritma;
+			sourceTree = "<group>";
+		};
+		D42CCD1F30501ED300CC90EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D49731CF3051FBF1002AFCF1 /* HomeTabView.swift */,
+				D42CCD2E3050201800CC90EF /* Resources */,
+				D42CCD2F3050201B00CC90EF /* Paywall */,
+				D42CCD303050201E00CC90EF /* Journal */,
+				D42CCD313050202100CC90EF /* Dashboard */,
+				D42CCD323050202800CC90EF /* Onboarding */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D42CCD2C3050200200CC90EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D49731DB305202FA002AFCF1 /* BetLogEntry.swift */,
+				D49731D33051FE6B002AFCF1 /* AvatarConfig.swift */,
+				D49731BF3051905C002AFCF1 /* PGSIQuestion.swift */,
+				D49731BB30518C53002AFCF1 /* GameType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D42CCD2D3050200C00CC90EF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D49731DD30520305002AFCF1 /* BetsService.swift */,
+				D49731D53051FE7E002AFCF1 /* AvatarStore.swift */,
+				D42CCD3D3050357B00CC90EF /* AuthService.swift */,
+				D42CCD3B305032D200CC90EF /* SupabaseService.swift */,
+				EFB69EF5A0B161FF0F1E6C64 /* SubscriptionManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D42CCD2E3050201800CC90EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D49731D13051FDA7002AFCF1 /* BlockerView.swift */,
+				D49731CD3051FBE0002AFCF1 /* EmergencyView.swift */,
+				D49731CB3051FBCC002AFCF1 /* ResourcesView.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D42CCD2F3050201B00CC90EF /* Paywall */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		D42CCD303050201E00CC90EF /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				D49731DF30520316002AFCF1 /* AddBetView.swift */,
+				D49731C93051FBBD002AFCF1 /* JournalView.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		D42CCD313050202100CC90EF /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				D49731D93051FEA5002AFCF1 /* AvatarCreatorView.swift */,
+				D49731C73051FB95002AFCF1 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		D42CCD323050202800CC90EF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D49731E1305204BF002AFCF1 /* SignUpView.swift */,
+				D49731C330519092002AFCF1 /* PGSIResultsView.swift */,
+				D49731C130519072002AFCF1 /* PGSIQuestionnaireView.swift */,
+				D49731BD30518C86002AFCF1 /* PracticeDetailsView.swift */,
+				D49731B930516800002AFCF1 /* GamesSelectionView.swift */,
+				D42CCD49305047BF00CC90EF /* WelcomeView.swift */,
+				D42CCD3F3050370C00CC90EF /* AuthTestView.swift */,
+				10BF6D088140F380DAEAD404 /* PaywallView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D42CCD333050204800CC90EF /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				D49731D73051FE90002AFCF1 /* AvatarView.swift */,
+				D42CCD47305046DF00CC90EF /* Animations.swift */,
+				D42CCD45305046B300CC90EF /* Typography.swift */,
+				D42CCD43305045B200CC90EF /* Colors.swift */,
+				D42CCD353050205E00CC90EF /* Components */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		D42CCD343050205200CC90EF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D42CCD353050205E00CC90EF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D49731C5305193FD002AFCF1 /* QuestionIllustration.swift */,
+				D49731B7305159E2002AFCF1 /* StopButtonStyle.swift */,
+				D49731B530508E0D002AFCF1 /* NotificationBillboard.swift */,
+				D42CCD4B30504ACA00CC90EF /* PrimaryButtonStyle.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ED9E9BE4931A62A5385545A2 /* StoreKit */ = {
+			isa = PBXGroup;
+			children = (
+				13526EB629EE79FB4968A17D /* Products.storekit */,
+			);
+			name = StoreKit;
+			path = StoreKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,11 +272,9 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				D42CCD0C30501EC000CC90EF /* Ritma */,
-			);
 			name = Ritma;
 			packageProductDependencies = (
+				D42CCD3730502E9500CC90EF /* Supabase */,
 			);
 			productName = Ritma;
 			productReference = D42CCD0A30501EC000CC90EF /* Ritma.app */;
@@ -94,6 +304,9 @@
 			);
 			mainGroup = D42CCD0130501EC000CC90EF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D42CCD3630502E9500CC90EF /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D42CCD0B30501EC000CC90EF /* Products */;
 			projectDirPath = "";
@@ -109,6 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42CCD1C30501ECF00CC90EF /* Assets.xcassets in Resources */,
+				4E372964DC2AEE40EA79544A /* Products.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +334,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D49731D23051FDAD002AFCF1 /* BlockerView.swift in Sources */,
+				D42CCD46305046BB00CC90EF /* Typography.swift in Sources */,
+				D42CCD403050371500CC90EF /* AuthTestView.swift in Sources */,
+				D49731C430519095002AFCF1 /* PGSIResultsView.swift in Sources */,
+				D49731B630508E16002AFCF1 /* NotificationBillboard.swift in Sources */,
+				D42CCD44305045C000CC90EF /* Colors.swift in Sources */,
+				D42CCD1D30501ECF00CC90EF /* ContentView.swift in Sources */,
+				D49731C230519074002AFCF1 /* PGSIQuestionnaireView.swift in Sources */,
+				D49731D43051FE73002AFCF1 /* AvatarConfig.swift in Sources */,
+				D49731D83051FEA2002AFCF1 /* AvatarView.swift in Sources */,
+				D42CCD4A305047CD00CC90EF /* WelcomeView.swift in Sources */,
+				D49731E030520317002AFCF1 /* AddBetView.swift in Sources */,
+				D49731BA3051684D002AFCF1 /* GamesSelectionView.swift in Sources */,
+				D49731D63051FE8D002AFCF1 /* AvatarStore.swift in Sources */,
+				D42CCD3C305032DD00CC90EF /* SupabaseService.swift in Sources */,
+				D49731C6305193FE002AFCF1 /* QuestionIllustration.swift in Sources */,
+				D49731E2305204C1002AFCF1 /* SignUpView.swift in Sources */,
+				D49731C030519061002AFCF1 /* PGSIQuestion.swift in Sources */,
+				D49731DA3051FEA6002AFCF1 /* AvatarCreatorView.swift in Sources */,
+				D49731CE3051FBE4002AFCF1 /* EmergencyView.swift in Sources */,
+				D42CCD4C30504AE700CC90EF /* PrimaryButtonStyle.swift in Sources */,
+				D49731BC30518C5C002AFCF1 /* GameType.swift in Sources */,
+				D49731DE30520305002AFCF1 /* BetsService.swift in Sources */,
+				D49731D03051FBF6002AFCF1 /* HomeTabView.swift in Sources */,
+				D49731CC3051FBD0002AFCF1 /* ResourcesView.swift in Sources */,
+				D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */,
+				D49731DC305202FC002AFCF1 /* BetLogEntry.swift in Sources */,
+				D42CCD48305046EA00CC90EF /* Animations.swift in Sources */,
+				D42CCD3E3050358200CC90EF /* AuthService.swift in Sources */,
+				D49731C83051FB96002AFCF1 /* DashboardView.swift in Sources */,
+				D49731CA3051FBC1002AFCF1 /* JournalView.swift in Sources */,
+				D49731B8305159E4002AFCF1 /* StopButtonStyle.swift in Sources */,
+				D49731BE30518C88002AFCF1 /* PracticeDetailsView.swift in Sources */,
+				443671C0AB3A5A4E2D3A90C0 /* SubscriptionManager.swift in Sources */,
+				2D5A1174A8EE17FD7321BB35 /* PaywallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +595,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D42CCD3630502E9500CC90EF /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D42CCD3730502E9500CC90EF /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D42CCD3630502E9500CC90EF /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D42CCD0230501EC000CC90EF /* Project object */;
 }
