@@ -34,8 +34,8 @@ enum PGSIRiskCategory: String {
     static func from(score: Int) -> PGSIRiskCategory {
         switch score {
         case 0: return .none
-        case 1...2: return .low
-        case 3...7: return .moderate
+        case 1...10: return .low
+        case 11...19: return .moderate
         default: return .high
         }
     }

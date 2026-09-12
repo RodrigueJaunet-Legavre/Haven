@@ -14,6 +14,12 @@ struct PGSIQuestionnaireView: View {
         answers.values.reduce(0, +)
     }
 
+    private var scaledScore: Int {
+        guard totalScore > 0 else { return 0 }
+        let ratio = Double(totalScore) / 27.0
+        return Int((30.0 * ratio.squareRoot()).rounded())
+    }
+
     var body: some View {
         ZStack {
             Color.appBackground.ignoresSafeArea()
@@ -38,7 +44,7 @@ struct PGSIQuestionnaireView: View {
         }
         .navigationBarHidden(true)
         .navigationDestination(isPresented: $goToResults) {
-            PGSIResultsView(score: totalScore, category: PGSIRiskCategory.from(score: totalScore))
+            PGSIResultsView(score: scaledScore, category: PGSIRiskCategory.from(score: scaledScore))
         }
         .onAppear {
             withAnimation(.appSpring.delay(0.1)) {

@@ -43,8 +43,15 @@ final class BetsService: ObservableObject {
         do {
             try await client.from("bets_log").insert(newBet).execute()
             await fetchEntries()
+            applyRelapsePenalty()
+            await StreakStore.shared.refresh()
         } catch {
             print("Erreur insert bet: \(error)")
         }
+    }
+
+    private func applyRelapsePenalty() {
+        let store = AvatarStore.shared
+        store.vitalityScore = max(0, store.vitalityScore - 25)
     }
 }

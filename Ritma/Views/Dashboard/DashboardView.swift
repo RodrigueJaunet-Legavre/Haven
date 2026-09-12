@@ -2,7 +2,9 @@ import SwiftUI
 
 struct DashboardView: View {
     @ObservedObject private var store = AvatarStore.shared
-    @State private var streakDays = 0
+    @ObservedObject private var streakStore = StreakStore.shared
+    @ObservedObject private var completionStore = ActivityCompletionStore.shared
+    @State private var showSettings = false
 
     var body: some View {
         NavigationStack {
@@ -16,7 +18,7 @@ struct DashboardView: View {
                         AvatarView(config: store.config, vitalityScore: store.vitalityScore)
 
                         VStack(spacing: 6) {
-                            Text("\(streakDays) jour\(streakDays > 1 ? "s" : "") sans jouer")
+                            Text("\(streakStore.streakDays) jour\(streakStore.streakDays > 1 ? "s" : "") sans jouer")
                                 .font(.appHeadline)
                                 .foregroundStyle(Color.appTextPrimary)
 
@@ -38,7 +40,24 @@ struct DashboardView: View {
                     .padding(.horizontal, 28)
                 }
             }
-            .navigationBarHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showSettings = true
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundStyle(Color.appTextSecondary)
+                    }
+                }
+            }
+            .toolbarBackground(Color.appBackground, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
+            }
+            .task {
+                await streakStore.refresh()
+            }
         }
     }
 
@@ -50,6 +69,13 @@ struct DashboardView: View {
 
             Slider(value: $store.vitalityScore, in: 0...100)
                 .tint(Color.appAccent)
+
+            Button("Réinitialiser les activités du jour") {
+                completionStore.resetToday()
+            }
+            .font(.system(size: 13, weight: .semibold))
+            .foregroundStyle(Color.appDanger)
+            .padding(.top, 4)
         }
         .padding(16)
         .background(

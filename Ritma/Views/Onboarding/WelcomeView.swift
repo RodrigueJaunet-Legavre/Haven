@@ -161,7 +161,7 @@ struct WelcomeView: View {
         ZStack {
             if let amount = neonAmount {
                 Text("-\(amount) €")
-                    .font(.system(size: neonFontSize(for: amount), weight: .heavy, design: .rounded))
+                    .font(.system(size: neonFontSize(for: amount), weight: .heavy, design: .default))
                     .foregroundStyle(.white)
                     .shadow(color: .white, radius: 4)
                     .shadow(color: Color.appDanger, radius: neonGlowRadius(for: amount) * 0.5)
@@ -181,7 +181,7 @@ struct WelcomeView: View {
                 .foregroundStyle(Color.appTextMuted)
 
             Text(totalLost.formatted(.number.locale(Locale(identifier: "fr_FR"))) + " €")
-                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .font(.system(size: 13, weight: .bold, design: .default))
                 .monospacedDigit()
                 .foregroundStyle(Color.appGold)
                 .contentTransition(.numericText())
@@ -198,21 +198,16 @@ struct WelcomeView: View {
     }
 
     private var headlineBlock: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("Gains, pertes,")
-                .font(.appTitle)
-                .foregroundStyle(Color.appTextSecondary)
-
-            Text("sans filtre.")
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Reprends la main.")
                 .font(.appDisplay)
+                .tracking(-1)
                 .foregroundStyle(Color.appTextPrimary)
                 .shadow(color: Color.appAccent.opacity(0.6), radius: 12)
-                .padding(.top, 2)
 
-            Text("Chaque notification a un prix. On fait les comptes à ta place.")
+            Text("Haven t'accompagne pour sortir des jeux d'argent, à ton rythme.")
                 .font(.appBody)
                 .foregroundStyle(Color.appTextSecondary)
-                .padding(.top, 10)
         }
         .opacity(isVisible ? 1 : 0)
         .offset(y: isVisible ? 0 : 16)
@@ -225,12 +220,19 @@ struct WelcomeView: View {
                 ghostAction(title: "Déposer")
             }
 
-            Button("Arrêter") {
+            Button {
                 goToGamesSelection = true
+            } label: {
+                HStack {
+                    Text("Arrêter")
+                    Spacer()
+                    Image(systemName: "arrow.right")
+                        .font(.system(size: 15, weight: .semibold))
+                }
             }
             .buttonStyle(StopButtonStyle())
 
-            Text("Essai gratuit, sans engagement")
+            Text("Fais le test en 2 minutes pour évaluer ta situation")
                 .font(.appCaption)
                 .foregroundStyle(Color.appTextMuted)
         }
@@ -238,7 +240,7 @@ struct WelcomeView: View {
 
     private func ghostAction(title: String) -> some View {
         Text(title)
-            .font(.system(size: 15, weight: .semibold, design: .rounded))
+            .font(.system(size: 15, weight: .semibold, design: .default))
             .foregroundStyle(Color.appTextMuted)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)

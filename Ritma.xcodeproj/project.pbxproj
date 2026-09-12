@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D5A1174A8EE17FD7321BB35 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF6D088140F380DAEAD404 /* PaywallView.swift */; };
 		443671C0AB3A5A4E2D3A90C0 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB69EF5A0B161FF0F1E6C64 /* SubscriptionManager.swift */; };
 		4E372964DC2AEE40EA79544A /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 13526EB629EE79FB4968A17D /* Products.storekit */; };
 		D42CCD1C30501ECF00CC90EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42CCD1830501ECF00CC90EF /* Assets.xcassets */; };
@@ -45,11 +44,24 @@
 		D49731DE30520305002AFCF1 /* BetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731DD30520305002AFCF1 /* BetsService.swift */; };
 		D49731E030520317002AFCF1 /* AddBetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731DF30520316002AFCF1 /* AddBetView.swift */; };
 		D49731E2305204C1002AFCF1 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731E1305204BF002AFCF1 /* SignUpView.swift */; };
+		D49731E43052B990002AFCF1 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731E33052B98F002AFCF1 /* PaywallView.swift */; };
+		D49731E7305333EC002AFCF1 /* EmergencyReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731E6305333EA002AFCF1 /* EmergencyReason.swift */; };
+		D49731E930533404002AFCF1 /* EmergencyReasonsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731E830533403002AFCF1 /* EmergencyReasonsStore.swift */; };
+		D49731EB30533665002AFCF1 /* EmergencySetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731EA30533664002AFCF1 /* EmergencySetupView.swift */; };
+		D49731ED30541261002AFCF1 /* ReplacementActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731EC3054125F002AFCF1 /* ReplacementActivity.swift */; };
+		D49731EF30541271002AFCF1 /* ResourceVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731EE30541270002AFCF1 /* ResourceVideo.swift */; };
+		D49731F130541290002AFCF1 /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F03054128F002AFCF1 /* VideoDetailView.swift */; };
+		D49731F33054147B002AFCF1 /* ActivityCompletionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F230541479002AFCF1 /* ActivityCompletionStore.swift */; };
+		D49731F5305415FE002AFCF1 /* StreakStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F4305415FD002AFCF1 /* StreakStore.swift */; };
+		D4FE4EC63054346D00A9886C /* OnboardingScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */; };
+		D4FE4EC83054348500A9886C /* TotalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC73054348400A9886C /* TotalHistoryView.swift */; };
+		D4FE4ECA30543A0200A9886C /* BlockerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC930543A0100A9886C /* BlockerStore.swift */; };
+		D4FE4ECC30543D3700A9886C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4ECB30543D3600A9886C /* SettingsView.swift */; };
+		D4FE4ECE30547D2900A9886C /* VitalityGainOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4ECD30547D2800A9886C /* VitalityGainOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		10BF6D088140F380DAEAD404 /* PaywallView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
-		13526EB629EE79FB4968A17D /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; path = Products.storekit; sourceTree = "<group>"; };
+		13526EB629EE79FB4968A17D /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 		D42CCD0A30501EC000CC90EF /* Ritma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ritma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42CCD1830501ECF00CC90EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D42CCD1930501ECF00CC90EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +97,22 @@
 		D49731DD30520305002AFCF1 /* BetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsService.swift; sourceTree = "<group>"; };
 		D49731DF30520316002AFCF1 /* AddBetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBetView.swift; sourceTree = "<group>"; };
 		D49731E1305204BF002AFCF1 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D49731E33052B98F002AFCF1 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		D49731E53053306D002AFCF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D49731E6305333EA002AFCF1 /* EmergencyReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyReason.swift; sourceTree = "<group>"; };
+		D49731E830533403002AFCF1 /* EmergencyReasonsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyReasonsStore.swift; sourceTree = "<group>"; };
+		D49731EA30533664002AFCF1 /* EmergencySetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencySetupView.swift; sourceTree = "<group>"; };
+		D49731EC3054125F002AFCF1 /* ReplacementActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplacementActivity.swift; sourceTree = "<group>"; };
+		D49731EE30541270002AFCF1 /* ResourceVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceVideo.swift; sourceTree = "<group>"; };
+		D49731F03054128F002AFCF1 /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
+		D49731F230541479002AFCF1 /* ActivityCompletionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCompletionStore.swift; sourceTree = "<group>"; };
+		D49731F4305415FD002AFCF1 /* StreakStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakStore.swift; sourceTree = "<group>"; };
+		D4B6B5B830559B2E0035DDE7 /* Ritma.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ritma.entitlements; sourceTree = "<group>"; };
+		D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScoreStore.swift; sourceTree = "<group>"; };
+		D4FE4EC73054348400A9886C /* TotalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalHistoryView.swift; sourceTree = "<group>"; };
+		D4FE4EC930543A0100A9886C /* BlockerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerStore.swift; sourceTree = "<group>"; };
+		D4FE4ECB30543D3600A9886C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D4FE4ECD30547D2800A9886C /* VitalityGainOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalityGainOverlay.swift; sourceTree = "<group>"; };
 		EFB69EF5A0B161FF0F1E6C64 /* SubscriptionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +147,8 @@
 		D42CCD1B30501ECF00CC90EF /* Ritma */ = {
 			isa = PBXGroup;
 			children = (
+				D4B6B5B830559B2E0035DDE7 /* Ritma.entitlements */,
+				D49731E53053306D002AFCF1 /* Info.plist */,
 				D42CCD343050205200CC90EF /* Utils */,
 				D42CCD333050204800CC90EF /* DesignSystem */,
 				D42CCD2D3050200C00CC90EF /* Services */,
@@ -148,6 +178,9 @@
 		D42CCD2C3050200200CC90EF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D49731EE30541270002AFCF1 /* ResourceVideo.swift */,
+				D49731EC3054125F002AFCF1 /* ReplacementActivity.swift */,
+				D49731E6305333EA002AFCF1 /* EmergencyReason.swift */,
 				D49731DB305202FA002AFCF1 /* BetLogEntry.swift */,
 				D49731D33051FE6B002AFCF1 /* AvatarConfig.swift */,
 				D49731BF3051905C002AFCF1 /* PGSIQuestion.swift */,
@@ -159,6 +192,11 @@
 		D42CCD2D3050200C00CC90EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D4FE4EC930543A0100A9886C /* BlockerStore.swift */,
+				D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */,
+				D49731F4305415FD002AFCF1 /* StreakStore.swift */,
+				D49731F230541479002AFCF1 /* ActivityCompletionStore.swift */,
+				D49731E830533403002AFCF1 /* EmergencyReasonsStore.swift */,
 				D49731DD30520305002AFCF1 /* BetsService.swift */,
 				D49731D53051FE7E002AFCF1 /* AvatarStore.swift */,
 				D42CCD3D3050357B00CC90EF /* AuthService.swift */,
@@ -171,6 +209,7 @@
 		D42CCD2E3050201800CC90EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D49731F03054128F002AFCF1 /* VideoDetailView.swift */,
 				D49731D13051FDA7002AFCF1 /* BlockerView.swift */,
 				D49731CD3051FBE0002AFCF1 /* EmergencyView.swift */,
 				D49731CB3051FBCC002AFCF1 /* ResourcesView.swift */,
@@ -181,6 +220,7 @@
 		D42CCD2F3050201B00CC90EF /* Paywall */ = {
 			isa = PBXGroup;
 			children = (
+				D49731E33052B98F002AFCF1 /* PaywallView.swift */,
 			);
 			path = Paywall;
 			sourceTree = "<group>";
@@ -197,6 +237,7 @@
 		D42CCD313050202100CC90EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				D4FE4ECB30543D3600A9886C /* SettingsView.swift */,
 				D49731D93051FEA5002AFCF1 /* AvatarCreatorView.swift */,
 				D49731C73051FB95002AFCF1 /* DashboardView.swift */,
 			);
@@ -206,6 +247,8 @@
 		D42CCD323050202800CC90EF /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				D4FE4EC73054348400A9886C /* TotalHistoryView.swift */,
+				D49731EA30533664002AFCF1 /* EmergencySetupView.swift */,
 				D49731E1305204BF002AFCF1 /* SignUpView.swift */,
 				D49731C330519092002AFCF1 /* PGSIResultsView.swift */,
 				D49731C130519072002AFCF1 /* PGSIQuestionnaireView.swift */,
@@ -213,7 +256,6 @@
 				D49731B930516800002AFCF1 /* GamesSelectionView.swift */,
 				D42CCD49305047BF00CC90EF /* WelcomeView.swift */,
 				D42CCD3F3050370C00CC90EF /* AuthTestView.swift */,
-				10BF6D088140F380DAEAD404 /* PaywallView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -221,6 +263,7 @@
 		D42CCD333050204800CC90EF /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				D4FE4ECD30547D2800A9886C /* VitalityGainOverlay.swift */,
 				D49731D73051FE90002AFCF1 /* AvatarView.swift */,
 				D42CCD47305046DF00CC90EF /* Animations.swift */,
 				D42CCD45305046B300CC90EF /* Typography.swift */,
@@ -253,7 +296,6 @@
 			children = (
 				13526EB629EE79FB4968A17D /* Products.storekit */,
 			);
-			name = StoreKit;
 			path = StoreKit;
 			sourceTree = "<group>";
 		};
@@ -335,9 +377,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D49731D23051FDAD002AFCF1 /* BlockerView.swift in Sources */,
+				D49731E43052B990002AFCF1 /* PaywallView.swift in Sources */,
 				D42CCD46305046BB00CC90EF /* Typography.swift in Sources */,
+				D4FE4EC83054348500A9886C /* TotalHistoryView.swift in Sources */,
 				D42CCD403050371500CC90EF /* AuthTestView.swift in Sources */,
 				D49731C430519095002AFCF1 /* PGSIResultsView.swift in Sources */,
+				D49731F130541290002AFCF1 /* VideoDetailView.swift in Sources */,
 				D49731B630508E16002AFCF1 /* NotificationBillboard.swift in Sources */,
 				D42CCD44305045C000CC90EF /* Colors.swift in Sources */,
 				D42CCD1D30501ECF00CC90EF /* ContentView.swift in Sources */,
@@ -346,14 +391,23 @@
 				D49731D83051FEA2002AFCF1 /* AvatarView.swift in Sources */,
 				D42CCD4A305047CD00CC90EF /* WelcomeView.swift in Sources */,
 				D49731E030520317002AFCF1 /* AddBetView.swift in Sources */,
+				D4FE4EC63054346D00A9886C /* OnboardingScoreStore.swift in Sources */,
 				D49731BA3051684D002AFCF1 /* GamesSelectionView.swift in Sources */,
 				D49731D63051FE8D002AFCF1 /* AvatarStore.swift in Sources */,
+				D49731E7305333EC002AFCF1 /* EmergencyReason.swift in Sources */,
 				D42CCD3C305032DD00CC90EF /* SupabaseService.swift in Sources */,
 				D49731C6305193FE002AFCF1 /* QuestionIllustration.swift in Sources */,
 				D49731E2305204C1002AFCF1 /* SignUpView.swift in Sources */,
 				D49731C030519061002AFCF1 /* PGSIQuestion.swift in Sources */,
 				D49731DA3051FEA6002AFCF1 /* AvatarCreatorView.swift in Sources */,
+				D49731F5305415FE002AFCF1 /* StreakStore.swift in Sources */,
+				D49731EF30541271002AFCF1 /* ResourceVideo.swift in Sources */,
+				D49731ED30541261002AFCF1 /* ReplacementActivity.swift in Sources */,
+				D4FE4ECE30547D2900A9886C /* VitalityGainOverlay.swift in Sources */,
+				D4FE4ECC30543D3700A9886C /* SettingsView.swift in Sources */,
+				D49731F33054147B002AFCF1 /* ActivityCompletionStore.swift in Sources */,
 				D49731CE3051FBE4002AFCF1 /* EmergencyView.swift in Sources */,
+				D49731EB30533665002AFCF1 /* EmergencySetupView.swift in Sources */,
 				D42CCD4C30504AE700CC90EF /* PrimaryButtonStyle.swift in Sources */,
 				D49731BC30518C5C002AFCF1 /* GameType.swift in Sources */,
 				D49731DE30520305002AFCF1 /* BetsService.swift in Sources */,
@@ -361,6 +415,8 @@
 				D49731CC3051FBD0002AFCF1 /* ResourcesView.swift in Sources */,
 				D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */,
 				D49731DC305202FC002AFCF1 /* BetLogEntry.swift in Sources */,
+				D49731E930533404002AFCF1 /* EmergencyReasonsStore.swift in Sources */,
+				D4FE4ECA30543A0200A9886C /* BlockerStore.swift in Sources */,
 				D42CCD48305046EA00CC90EF /* Animations.swift in Sources */,
 				D42CCD3E3050358200CC90EF /* AuthService.swift in Sources */,
 				D49731C83051FB96002AFCF1 /* DashboardView.swift in Sources */,
@@ -368,7 +424,6 @@
 				D49731B8305159E4002AFCF1 /* StopButtonStyle.swift in Sources */,
 				D49731BE30518C88002AFCF1 /* PracticeDetailsView.swift in Sources */,
 				443671C0AB3A5A4E2D3A90C0 /* SubscriptionManager.swift in Sources */,
-				2D5A1174A8EE17FD7321BB35 /* PaywallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,12 +549,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WL4R6ZN2T8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ritma/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Haven;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -515,18 +575,19 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = virogue.Ritma;
+				PRODUCT_BUNDLE_IDENTIFIER = haven.virogue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Debug;
@@ -536,12 +597,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WL4R6ZN2T8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Ritma/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Haven;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -557,18 +623,19 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = virogue.Ritma;
+				PRODUCT_BUNDLE_IDENTIFIER = haven.virogue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				XROS_DEPLOYMENT_TARGET = 26.5;
 			};
 			name = Release;

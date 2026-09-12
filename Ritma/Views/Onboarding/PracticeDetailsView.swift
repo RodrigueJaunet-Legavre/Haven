@@ -3,18 +3,65 @@ import SwiftUI
 struct PracticeDetailsView: View {
     let selectedGames: [GameType]
 
-    @State private var goToQuestionnaire = false
     @State private var isVisible = false
     @State private var frequencies: [GameType: String] = [:]
     @State private var stakes: [GameType: String] = [:]
+    @State private var durations: [GameType: String] = [:]
+    @State private var goToTotalHistory = false
     @FocusState private var focusedField: GameType?
 
-    private let frequencyOptions = ["Quotidien", "Plusieurs fois/semaine", "Une fois/semaine", "Quelques fois/mois", "Rarement"]
+    private let frequencyOptions: [(label: String, impact: Int)] = [
+        ("Quotidien", 20),
+        ("Plusieurs fois/semaine", 15),
+        ("Une fois/semaine", 10),
+        ("Quelques fois/mois", 5),
+        ("Rarement", 0)
+    ]
+
+    private let durationOptions: [(label: String, impact: Int)] = [
+        ("Moins de 6 mois", 0),
+        ("6 mois à 1 an", 5),
+        ("1 à 3 ans", 10),
+        ("3 à 5 ans", 15),
+        ("Plus de 5 ans", 20)
+    ]
 
     private var isComplete: Bool {
         selectedGames.allSatisfy { game in
-            frequencies[game] != nil && !(stakes[game]?.isEmpty ?? true)
+            frequencies[game] != nil && !(stakes[game]?.isEmpty ?? true) && durations[game] != nil
         }
+    }
+
+    private func stakeImpact(for montant: Double) -> Int {
+        switch montant {
+        case ..<20: return 0
+        case 20..<50: return 5
+        case 50..<100: return 10
+        case 100..<300: return 15
+        default: return 20
+        }
+    }
+
+    private var durationImpact: Int {
+        selectedGames.compactMap { game in
+            durations[game].flatMap { label in
+                durationOptions.first(where: { $0.label == label })?.impact
+            }
+        }.max() ?? 0
+    }
+
+    private var frequencyImpact: Int {
+        selectedGames.compactMap { game in
+            frequencies[game].flatMap { label in
+                frequencyOptions.first(where: { $0.label == label })?.impact
+            }
+        }.max() ?? 0
+    }
+
+    private var stakeImpactValue: Int {
+        selectedGames.compactMap { game in
+            stakes[game].flatMap { Double($0) }.map { stakeImpact(for: $0) }
+        }.max() ?? 0
     }
 
     var body: some View {
@@ -39,7 +86,15 @@ struct PracticeDetailsView: View {
                 }
 
                 Button("Continuer") {
-                    goToQuestionnaire = true
+                    OnboardingScoreStore.shared.durationImpact = durationImpact
+                    OnboardingScoreStore.shared.frequencyImpact = frequencyImpact
+                    OnboardingScoreStore.shared.stakeImpact = stakeImpactValue
+                    OnboardingScoreStore.shared.selectedGames = selectedGames
+                    OnboardingScoreStore.shared.stakes = Dictionary(uniqueKeysWithValues: selectedGames.compactMap { game in
+                        stakes[game].flatMap { Double($0) }.map { (game, $0) }
+                    })
+                    OnboardingScoreStore.shared.frequencyLabels = frequencies
+                    goToTotalHistory = true
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 .padding(.horizontal, 28)
@@ -48,8 +103,8 @@ struct PracticeDetailsView: View {
                 .disabled(!isComplete)
             }
         }
-        .navigationDestination(isPresented: $goToQuestionnaire) {
-            PGSIQuestionnaireView()
+        .navigationDestination(isPresented: $goToTotalHistory) {
+            TotalHistoryView()
         }
         .navigationBarHidden(true)
         .onAppear {
@@ -85,8 +140,30 @@ struct PracticeDetailsView: View {
                     .foregroundStyle(Color.appTextSecondary)
 
                 VStack(spacing: 8) {
-                    ForEach(frequencyOptions, id: \.self) { option in
-                        frequencyChip(option: option, game: game)
+                    ForEach(frequencyOptions, id: \.label) { option in
+                        selectableChip(
+                            label: option.label,
+                            isSelected: frequencies[game] == option.label
+                        ) {
+                            frequencies[game] = option.label
+                        }
+                    }
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Depuis quand tu joues ?")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(Color.appTextSecondary)
+
+                VStack(spacing: 8) {
+                    ForEach(durationOptions, id: \.label) { option in
+                        selectableChip(
+                            label: option.label,
+                            isSelected: durations[game] == option.label
+                        ) {
+                            durations[game] = option.label
+                        }
                     }
                 }
             }
@@ -131,16 +208,10 @@ struct PracticeDetailsView: View {
         .offset(y: isVisible ? 0 : 16)
     }
 
-    private func frequencyChip(option: String, game: GameType) -> some View {
-        let isSelected = frequencies[game] == option
-
-        return Button {
-            withAnimation(.appSpringSnappy) {
-                frequencies[game] = option
-            }
-        } label: {
+    private func selectableChip(label: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
             HStack {
-                Text(option)
+                Text(label)
                     .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundStyle(isSelected ? Color.appBackground : Color.appTextSecondary)
 

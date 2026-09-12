@@ -59,11 +59,36 @@ struct SignUpView: View {
                         .foregroundStyle(Color.appAccent)
                 }
 
+                HStack {
+                    Rectangle().fill(Color.appBorder).frame(height: 1)
+                    Text("ou")
+                        .font(.system(size: 12))
+                        .foregroundStyle(Color.appTextMuted)
+                    Rectangle().fill(Color.appBorder).frame(height: 1)
+                }
+                .padding(.horizontal, 28)
+
+                Button {
+                    Task { await submitGoogle() }
+                } label: {
+                    HStack {
+                        Image(systemName: "g.circle.fill")
+                        Text("Continuer avec Google")
+                    }
+                    .font(.system(size: 15, weight: .semibold, design: .rounded))
+                    .foregroundStyle(Color.appTextPrimary)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(
+                        RoundedRectangle(cornerRadius: 14).fill(Color.appSurfaceElevated)
+                    )
+                }
+                .padding(.horizontal, 28)
                 Spacer()
             }
         }
         .navigationDestination(isPresented: $goToHome) {
-            HomeTabView()
+            EmergencySetupView()
         }
         .navigationBarHidden(true)
     }
@@ -96,6 +121,17 @@ struct SignUpView: View {
             } else {
                 try await authService.signIn(email: email, password: password)
             }
+            goToHome = true
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        isLoading = false
+    }
+    private func submitGoogle() async {
+        isLoading = true
+        errorMessage = nil
+        do {
+            try await authService.signInWithGoogle()
             goToHome = true
         } catch {
             errorMessage = error.localizedDescription
