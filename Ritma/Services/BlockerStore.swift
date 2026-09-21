@@ -7,12 +7,24 @@ import ManagedSettings
 final class BlockerStore: ObservableObject {
     static let shared = BlockerStore()
 
+    static let disableDelay: TimeInterval = 60 * 60 * 2
+
     @Published var isAuthorized = false
 
     @Published var isBlockingEnabled: Bool {
         didSet {
             UserDefaults.standard.set(isBlockingEnabled, forKey: "isBlockingEnabled")
             applyShielding()
+        }
+    }
+
+    @Published var pendingDisableDate: Date? {
+        didSet {
+            if let date = pendingDisableDate {
+                UserDefaults.standard.set(date, forKey: "pendingDisableDate")
+            } else {
+                UserDefaults.standard.removeObject(forKey: "pendingDisableDate")
+            }
         }
     }
 
@@ -31,10 +43,12 @@ final class BlockerStore: ObservableObject {
     }
 
     private let store = ManagedSettingsStore()
+    private var pendingDisableTimer: Timer?
 
     private init() {
         isBlockingEnabled = UserDefaults.standard.bool(forKey: "isBlockingEnabled")
         blockedDomains = UserDefaults.standard.array(forKey: "blockedDomains") as? [String] ?? []
+        pendingDisableDate = UserDefaults.standard.object(forKey: "pendingDisableDate") as? Date
 
         if let data = UserDefaults.standard.data(forKey: "familyActivitySelection"),
            let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
@@ -48,6 +62,10 @@ final class BlockerStore: ObservableObject {
         if isBlockingEnabled {
             applyShielding()
         }
+
+        if let pendingDisableDate {
+            scheduleDisable(at: pendingDisableDate)
+        }
     }
 
     func requestAuthorization() async {
@@ -56,6 +74,35 @@ final class BlockerStore: ObservableObject {
             isAuthorized = AuthorizationCenter.shared.authorizationStatus == .approved
         } catch {
             isAuthorized = false
+        }
+    }
+
+    func requestDisable() {
+        guard pendingDisableDate == nil else { return }
+        let target = Date().addingTimeInterval(Self.disableDelay)
+        pendingDisableDate = target
+        scheduleDisable(at: target)
+    }
+
+    func cancelPendingDisable() {
+        pendingDisableTimer?.invalidate()
+        pendingDisableTimer = nil
+        pendingDisableDate = nil
+    }
+
+    func applyEssentialPack() {
+        let legalDomains = Set(knownGamblingSites.map { $0.domain })
+        blockedDomains = Array(legalDomains.union(essentialCasinoDomains)).sorted()
+    }
+
+    private func scheduleDisable(at date: Date) {
+        pendingDisableTimer?.invalidate()
+        let interval = max(date.timeIntervalSinceNow, 0)
+        pendingDisableTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
+            Task { @MainActor in
+                self?.isBlockingEnabled = false
+                self?.pendingDisableDate = nil
+            }
         }
     }
 

@@ -22,6 +22,7 @@ final class StreakStore: ObservableObject {
 
         streakDays = max(0, days)
         applyDailyBonusIfNeeded()
+        BadgeStore.shared.checkMilestones(streakDays: streakDays)
     }
 
     private func accountCreationDate() -> Date {

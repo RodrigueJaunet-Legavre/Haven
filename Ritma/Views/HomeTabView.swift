@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeTabView: View {
     @ObservedObject private var avatarStore = AvatarStore.shared
+    @ObservedObject private var badgeStore = BadgeStore.shared
 
     var body: some View {
         ZStack {
@@ -43,9 +44,15 @@ struct HomeTabView: View {
                 .id(gain.id)
                 .transition(.opacity)
                 .zIndex(1)
+            } else if let unlock = badgeStore.pendingUnlocks.first {
+                BadgeUnlockOverlay(badge: unlock.badge) {
+                    badgeStore.dismissCurrentUnlock()
+                }
+                .id(unlock.id)
+                .transition(.opacity)
+                .zIndex(1)
             }
         }
-        .navigationBarHidden(true)
     }
 }
 

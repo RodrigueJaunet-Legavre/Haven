@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var authService = AuthService.shared
+    @ObservedObject private var trustedContactStore = TrustedContactStore.shared
 
     @State private var notificationsEnabled = UserDefaults.standard.object(forKey: "notificationsEnabled") as? Bool ?? true
     @State private var showSignOutConfirmation = false
@@ -27,6 +28,8 @@ struct SettingsView: View {
                                     UserDefaults.standard.set(newValue, forKey: "notificationsEnabled")
                                 }
                         }
+
+                        trustedContactCard
 
                         signOutButton
                     }
@@ -54,6 +57,29 @@ struct SettingsView: View {
                 Button("OK", role: .cancel) {}
             } message: {
                 Text("Relance l'application pour revenir à l'écran de connexion.")
+            }
+        }
+    }
+
+    private var trustedContactCard: some View {
+        sectionCard(title: "Contact de confiance") {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Si tu vis un moment difficile (envies répétées, rechutes rapprochées), Haven te proposera de le prévenir facilement.")
+                    .font(.system(size: 12))
+                    .foregroundStyle(Color.appTextMuted)
+
+                TextField("Nom", text: $trustedContactStore.name)
+                    .foregroundStyle(Color.appTextPrimary)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.appSurfaceElevated))
+
+                TextField("Numéro de téléphone", text: $trustedContactStore.phone)
+                    .keyboardType(.phonePad)
+                    .foregroundStyle(Color.appTextPrimary)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.appSurfaceElevated))
             }
         }
     }

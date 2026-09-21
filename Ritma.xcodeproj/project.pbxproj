@@ -53,6 +53,20 @@
 		D49731F130541290002AFCF1 /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F03054128F002AFCF1 /* VideoDetailView.swift */; };
 		D49731F33054147B002AFCF1 /* ActivityCompletionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F230541479002AFCF1 /* ActivityCompletionStore.swift */; };
 		D49731F5305415FE002AFCF1 /* StreakStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49731F4305415FD002AFCF1 /* StreakStore.swift */; };
+		D4A481D93056B5C7001F34D5 /* Victory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481D83056B5C4001F34D5 /* Victory.swift */; };
+		D4A481DB3056B5D5001F34D5 /* VictoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481DA3056B5D4001F34D5 /* VictoryService.swift */; };
+		D4A481DD3056B5F4001F34D5 /* AddVictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481DC3056B5F3001F34D5 /* AddVictoryView.swift */; };
+		D4A481DF305705C1001F34D5 /* GamblingSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481DE305705C1001F34D5 /* GamblingSite.swift */; };
+		D4A481E1305707CB001F34D5 /* CasinoSitesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481E0305707C3001F34D5 /* CasinoSitesListView.swift */; };
+		D4A481E3305AAED7001F34D5 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481E2305AAED3001F34D5 /* Badge.swift */; };
+		D4A481E5305AAEF0001F34D5 /* BadgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481E4305AAEEF001F34D5 /* BadgeStore.swift */; };
+		D4A481E7305AAF05001F34D5 /* BadgeUnlockOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481E6305AAF05001F34D5 /* BadgeUnlockOverlay.swift */; };
+		D4A481E9305AAF1F001F34D5 /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481E8305AAF1E001F34D5 /* BadgesView.swift */; };
+		D4A481EB305AB140001F34D5 /* TrustedContactStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481EA305AB13F001F34D5 /* TrustedContactStore.swift */; };
+		D4A481ED305AB159001F34D5 /* MessageComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481EC305AB158001F34D5 /* MessageComposerView.swift */; };
+		D4A481EF305AB16E001F34D5 /* TrustedContactPromptOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481EE305AB16D001F34D5 /* TrustedContactPromptOverlay.swift */; };
+		D4A481F1305AB194001F34D5 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481F0305AB188001F34D5 /* CheckIn.swift */; };
+		D4A481F3305AB1A4001F34D5 /* CheckInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A481F2305AB1A3001F34D5 /* CheckInService.swift */; };
 		D4FE4EC63054346D00A9886C /* OnboardingScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */; };
 		D4FE4EC83054348500A9886C /* TotalHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC73054348400A9886C /* TotalHistoryView.swift */; };
 		D4FE4ECA30543A0200A9886C /* BlockerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE4EC930543A0100A9886C /* BlockerStore.swift */; };
@@ -107,6 +121,20 @@
 		D49731F03054128F002AFCF1 /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		D49731F230541479002AFCF1 /* ActivityCompletionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCompletionStore.swift; sourceTree = "<group>"; };
 		D49731F4305415FD002AFCF1 /* StreakStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakStore.swift; sourceTree = "<group>"; };
+		D4A481D83056B5C4001F34D5 /* Victory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Victory.swift; sourceTree = "<group>"; };
+		D4A481DA3056B5D4001F34D5 /* VictoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryService.swift; sourceTree = "<group>"; };
+		D4A481DC3056B5F3001F34D5 /* AddVictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVictoryView.swift; sourceTree = "<group>"; };
+		D4A481DE305705C1001F34D5 /* GamblingSite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamblingSite.swift; sourceTree = "<group>"; };
+		D4A481E0305707C3001F34D5 /* CasinoSitesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasinoSitesListView.swift; sourceTree = "<group>"; };
+		D4A481E2305AAED3001F34D5 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		D4A481E4305AAEEF001F34D5 /* BadgeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeStore.swift; sourceTree = "<group>"; };
+		D4A481E6305AAF05001F34D5 /* BadgeUnlockOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeUnlockOverlay.swift; sourceTree = "<group>"; };
+		D4A481E8305AAF1E001F34D5 /* BadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
+		D4A481EA305AB13F001F34D5 /* TrustedContactStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactStore.swift; sourceTree = "<group>"; };
+		D4A481EC305AB158001F34D5 /* MessageComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageComposerView.swift; sourceTree = "<group>"; };
+		D4A481EE305AB16D001F34D5 /* TrustedContactPromptOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactPromptOverlay.swift; sourceTree = "<group>"; };
+		D4A481F0305AB188001F34D5 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
+		D4A481F2305AB1A3001F34D5 /* CheckInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInService.swift; sourceTree = "<group>"; };
 		D4B6B5B830559B2E0035DDE7 /* Ritma.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ritma.entitlements; sourceTree = "<group>"; };
 		D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScoreStore.swift; sourceTree = "<group>"; };
 		D4FE4EC73054348400A9886C /* TotalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalHistoryView.swift; sourceTree = "<group>"; };
@@ -178,6 +206,10 @@
 		D42CCD2C3050200200CC90EF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481F0305AB188001F34D5 /* CheckIn.swift */,
+				D4A481E2305AAED3001F34D5 /* Badge.swift */,
+				D4A481DE305705C1001F34D5 /* GamblingSite.swift */,
+				D4A481D83056B5C4001F34D5 /* Victory.swift */,
 				D49731EE30541270002AFCF1 /* ResourceVideo.swift */,
 				D49731EC3054125F002AFCF1 /* ReplacementActivity.swift */,
 				D49731E6305333EA002AFCF1 /* EmergencyReason.swift */,
@@ -192,6 +224,10 @@
 		D42CCD2D3050200C00CC90EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481F2305AB1A3001F34D5 /* CheckInService.swift */,
+				D4A481EA305AB13F001F34D5 /* TrustedContactStore.swift */,
+				D4A481E4305AAEEF001F34D5 /* BadgeStore.swift */,
+				D4A481DA3056B5D4001F34D5 /* VictoryService.swift */,
 				D4FE4EC930543A0100A9886C /* BlockerStore.swift */,
 				D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */,
 				D49731F4305415FD002AFCF1 /* StreakStore.swift */,
@@ -209,6 +245,7 @@
 		D42CCD2E3050201800CC90EF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481E0305707C3001F34D5 /* CasinoSitesListView.swift */,
 				D49731F03054128F002AFCF1 /* VideoDetailView.swift */,
 				D49731D13051FDA7002AFCF1 /* BlockerView.swift */,
 				D49731CD3051FBE0002AFCF1 /* EmergencyView.swift */,
@@ -228,6 +265,7 @@
 		D42CCD303050201E00CC90EF /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481DC3056B5F3001F34D5 /* AddVictoryView.swift */,
 				D49731DF30520316002AFCF1 /* AddBetView.swift */,
 				D49731C93051FBBD002AFCF1 /* JournalView.swift */,
 			);
@@ -237,6 +275,7 @@
 		D42CCD313050202100CC90EF /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481E8305AAF1E001F34D5 /* BadgesView.swift */,
 				D4FE4ECB30543D3600A9886C /* SettingsView.swift */,
 				D49731D93051FEA5002AFCF1 /* AvatarCreatorView.swift */,
 				D49731C73051FB95002AFCF1 /* DashboardView.swift */,
@@ -263,6 +302,8 @@
 		D42CCD333050204800CC90EF /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481EE305AB16D001F34D5 /* TrustedContactPromptOverlay.swift */,
+				D4A481E6305AAF05001F34D5 /* BadgeUnlockOverlay.swift */,
 				D4FE4ECD30547D2800A9886C /* VitalityGainOverlay.swift */,
 				D49731D73051FE90002AFCF1 /* AvatarView.swift */,
 				D42CCD47305046DF00CC90EF /* Animations.swift */,
@@ -283,6 +324,7 @@
 		D42CCD353050205E00CC90EF /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D4A481EC305AB158001F34D5 /* MessageComposerView.swift */,
 				D49731C5305193FD002AFCF1 /* QuestionIllustration.swift */,
 				D49731B7305159E2002AFCF1 /* StopButtonStyle.swift */,
 				D49731B530508E0D002AFCF1 /* NotificationBillboard.swift */,
@@ -379,24 +421,34 @@
 				D49731D23051FDAD002AFCF1 /* BlockerView.swift in Sources */,
 				D49731E43052B990002AFCF1 /* PaywallView.swift in Sources */,
 				D42CCD46305046BB00CC90EF /* Typography.swift in Sources */,
+				D4A481D93056B5C7001F34D5 /* Victory.swift in Sources */,
 				D4FE4EC83054348500A9886C /* TotalHistoryView.swift in Sources */,
 				D42CCD403050371500CC90EF /* AuthTestView.swift in Sources */,
 				D49731C430519095002AFCF1 /* PGSIResultsView.swift in Sources */,
+				D4A481E9305AAF1F001F34D5 /* BadgesView.swift in Sources */,
+				D4A481E3305AAED7001F34D5 /* Badge.swift in Sources */,
 				D49731F130541290002AFCF1 /* VideoDetailView.swift in Sources */,
 				D49731B630508E16002AFCF1 /* NotificationBillboard.swift in Sources */,
 				D42CCD44305045C000CC90EF /* Colors.swift in Sources */,
+				D4A481DF305705C1001F34D5 /* GamblingSite.swift in Sources */,
 				D42CCD1D30501ECF00CC90EF /* ContentView.swift in Sources */,
 				D49731C230519074002AFCF1 /* PGSIQuestionnaireView.swift in Sources */,
 				D49731D43051FE73002AFCF1 /* AvatarConfig.swift in Sources */,
 				D49731D83051FEA2002AFCF1 /* AvatarView.swift in Sources */,
+				D4A481DD3056B5F4001F34D5 /* AddVictoryView.swift in Sources */,
+				D4A481E5305AAEF0001F34D5 /* BadgeStore.swift in Sources */,
 				D42CCD4A305047CD00CC90EF /* WelcomeView.swift in Sources */,
 				D49731E030520317002AFCF1 /* AddBetView.swift in Sources */,
+				D4A481E7305AAF05001F34D5 /* BadgeUnlockOverlay.swift in Sources */,
 				D4FE4EC63054346D00A9886C /* OnboardingScoreStore.swift in Sources */,
 				D49731BA3051684D002AFCF1 /* GamesSelectionView.swift in Sources */,
 				D49731D63051FE8D002AFCF1 /* AvatarStore.swift in Sources */,
 				D49731E7305333EC002AFCF1 /* EmergencyReason.swift in Sources */,
+				D4A481EB305AB140001F34D5 /* TrustedContactStore.swift in Sources */,
 				D42CCD3C305032DD00CC90EF /* SupabaseService.swift in Sources */,
 				D49731C6305193FE002AFCF1 /* QuestionIllustration.swift in Sources */,
+				D4A481F3305AB1A4001F34D5 /* CheckInService.swift in Sources */,
+				D4A481DB3056B5D5001F34D5 /* VictoryService.swift in Sources */,
 				D49731E2305204C1002AFCF1 /* SignUpView.swift in Sources */,
 				D49731C030519061002AFCF1 /* PGSIQuestion.swift in Sources */,
 				D49731DA3051FEA6002AFCF1 /* AvatarCreatorView.swift in Sources */,
@@ -410,17 +462,21 @@
 				D49731EB30533665002AFCF1 /* EmergencySetupView.swift in Sources */,
 				D42CCD4C30504AE700CC90EF /* PrimaryButtonStyle.swift in Sources */,
 				D49731BC30518C5C002AFCF1 /* GameType.swift in Sources */,
+				D4A481F1305AB194001F34D5 /* CheckIn.swift in Sources */,
 				D49731DE30520305002AFCF1 /* BetsService.swift in Sources */,
 				D49731D03051FBF6002AFCF1 /* HomeTabView.swift in Sources */,
 				D49731CC3051FBD0002AFCF1 /* ResourcesView.swift in Sources */,
 				D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */,
 				D49731DC305202FC002AFCF1 /* BetLogEntry.swift in Sources */,
 				D49731E930533404002AFCF1 /* EmergencyReasonsStore.swift in Sources */,
+				D4A481EF305AB16E001F34D5 /* TrustedContactPromptOverlay.swift in Sources */,
 				D4FE4ECA30543A0200A9886C /* BlockerStore.swift in Sources */,
 				D42CCD48305046EA00CC90EF /* Animations.swift in Sources */,
 				D42CCD3E3050358200CC90EF /* AuthService.swift in Sources */,
+				D4A481ED305AB159001F34D5 /* MessageComposerView.swift in Sources */,
 				D49731C83051FB96002AFCF1 /* DashboardView.swift in Sources */,
 				D49731CA3051FBC1002AFCF1 /* JournalView.swift in Sources */,
+				D4A481E1305707CB001F34D5 /* CasinoSitesListView.swift in Sources */,
 				D49731B8305159E4002AFCF1 /* StopButtonStyle.swift in Sources */,
 				D49731BE30518C88002AFCF1 /* PracticeDetailsView.swift in Sources */,
 				443671C0AB3A5A4E2D3A90C0 /* SubscriptionManager.swift in Sources */,
@@ -550,9 +606,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WL4R6ZN2T8;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WL4R6ZN2T8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -577,6 +636,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = haven.virogue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Haven Distribution";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -598,9 +659,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WL4R6ZN2T8;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WL4R6ZN2T8;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -625,6 +689,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = haven.virogue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Haven Distribution";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;

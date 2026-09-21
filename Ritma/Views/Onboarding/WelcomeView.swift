@@ -13,6 +13,7 @@ struct WelcomeView: View {
     @State private var neonFlicker: Double = 1
     @State private var haloPulse = false
     @State private var goToGamesSelection = false
+    @State private var goToLogin = false
 
     private let crescendoAmounts = [25, 40, 55, 70, 85, 100]
 
@@ -51,6 +52,9 @@ struct WelcomeView: View {
         }
         .navigationDestination(isPresented: $goToGamesSelection) {
             GamesSelectionView()
+        }
+        .navigationDestination(isPresented: $goToLogin) {
+            SignUpView(startInSignUpMode: false)
         }
         .navigationBarHidden(true)
         .onAppear {
@@ -235,6 +239,15 @@ struct WelcomeView: View {
             Text("Fais le test en 2 minutes pour évaluer ta situation")
                 .font(.appCaption)
                 .foregroundStyle(Color.appTextMuted)
+
+            Button {
+                goToLogin = true
+            } label: {
+                Text("Déjà un compte ? Se connecter")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(Color.appAccent)
+            }
+            .padding(.top, 4)
         }
     }
 

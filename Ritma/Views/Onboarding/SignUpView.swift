@@ -3,12 +3,16 @@ import SwiftUI
 struct SignUpView: View {
     @StateObject private var authService = AuthService.shared
 
-    @State private var isSignUpMode = true
+    @State private var isSignUpMode: Bool
     @State private var email = ""
     @State private var password = ""
     @State private var errorMessage: String?
     @State private var isLoading = false
     @State private var goToHome = false
+
+    init(startInSignUpMode: Bool = true) {
+        _isSignUpMode = State(initialValue: startInSignUpMode)
+    }
 
     var body: some View {
         ZStack {
@@ -84,11 +88,16 @@ struct SignUpView: View {
                     )
                 }
                 .padding(.horizontal, 28)
+
                 Spacer()
             }
         }
         .navigationDestination(isPresented: $goToHome) {
-            EmergencySetupView()
+            if isSignUpMode {
+                EmergencySetupView()
+            } else {
+                HomeTabView()
+            }
         }
         .navigationBarHidden(true)
     }
@@ -127,6 +136,7 @@ struct SignUpView: View {
         }
         isLoading = false
     }
+
     private func submitGoogle() async {
         isLoading = true
         errorMessage = nil

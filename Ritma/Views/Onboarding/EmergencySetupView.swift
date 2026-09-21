@@ -73,7 +73,7 @@ struct EmergencySetupView: View {
                 .font(.system(size: 14))
                 .foregroundStyle(Color.appAccent)
 
-            Text(reason.text)
+            Text("pour \(reason.text)")
                 .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundStyle(Color.appTextPrimary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -97,23 +97,29 @@ struct EmergencySetupView: View {
     }
 
     private var addReasonField: some View {
-        HStack(spacing: 10) {
-            TextField("Ex : pour ma fille, pour rembourser mes dettes...", text: $newReasonText)
-                .focused($isFieldFocused)
-                .foregroundStyle(Color.appTextPrimary)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 12)
-                .background(
-                    RoundedRectangle(cornerRadius: 14).fill(Color.appSurfaceElevated)
-                )
-                .onSubmit { addReason() }
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Je décide d'arrêter les jeux d'argent pour")
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(Color.appTextSecondary)
 
-            Button {
-                addReason()
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.system(size: 28))
-                    .foregroundStyle(Color.appAccent)
+            HStack(spacing: 10) {
+                TextField("ma fille, mes économies, ma dignité...", text: $newReasonText)
+                    .focused($isFieldFocused)
+                    .foregroundStyle(Color.appTextPrimary)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 14).fill(Color.appSurfaceElevated)
+                    )
+                    .onSubmit { addReason() }
+
+                Button {
+                    addReason()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundStyle(Color.appAccent)
+                }
             }
         }
     }
