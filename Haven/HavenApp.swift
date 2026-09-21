@@ -1,6 +1,6 @@
 //
-//  RitmaApp.swift
-//  Ritma
+//  HavenApp.swift
+//  Haven
 //
 //  Created by Rodrigue Jaunet on 08/09/2026.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct RitmaApp: App {
+struct HavenApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

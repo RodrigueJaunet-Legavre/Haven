@@ -11,7 +11,7 @@
 		4E372964DC2AEE40EA79544A /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 13526EB629EE79FB4968A17D /* Products.storekit */; };
 		D42CCD1C30501ECF00CC90EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42CCD1830501ECF00CC90EF /* Assets.xcassets */; };
 		D42CCD1D30501ECF00CC90EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD1930501ECF00CC90EF /* ContentView.swift */; };
-		D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */; };
+		D42CCD1E30501ECF00CC90EF /* HavenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD1A30501ECF00CC90EF /* HavenApp.swift */; };
 		D42CCD3830502E9500CC90EF /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = D42CCD3730502E9500CC90EF /* Supabase */; };
 		D42CCD3C305032DD00CC90EF /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD3B305032D200CC90EF /* SupabaseService.swift */; };
 		D42CCD3E3050358200CC90EF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42CCD3D3050357B00CC90EF /* AuthService.swift */; };
@@ -76,10 +76,10 @@
 
 /* Begin PBXFileReference section */
 		13526EB629EE79FB4968A17D /* Products.storekit */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
-		D42CCD0A30501EC000CC90EF /* Ritma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ritma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D42CCD0A30501EC000CC90EF /* Haven.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haven.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42CCD1830501ECF00CC90EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D42CCD1930501ECF00CC90EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitmaApp.swift; sourceTree = "<group>"; };
+		D42CCD1A30501ECF00CC90EF /* HavenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavenApp.swift; sourceTree = "<group>"; };
 		D42CCD3B305032D200CC90EF /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		D42CCD3D3050357B00CC90EF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D42CCD3F3050370C00CC90EF /* AuthTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTestView.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		D4A481EE305AB16D001F34D5 /* TrustedContactPromptOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustedContactPromptOverlay.swift; sourceTree = "<group>"; };
 		D4A481F0305AB188001F34D5 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		D4A481F2305AB1A3001F34D5 /* CheckInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInService.swift; sourceTree = "<group>"; };
-		D4B6B5B830559B2E0035DDE7 /* Ritma.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ritma.entitlements; sourceTree = "<group>"; };
+		D4B6B5B830559B2E0035DDE7 /* Haven.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Haven.entitlements; sourceTree = "<group>"; };
 		D4FE4EC53054346C00A9886C /* OnboardingScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScoreStore.swift; sourceTree = "<group>"; };
 		D4FE4EC73054348400A9886C /* TotalHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalHistoryView.swift; sourceTree = "<group>"; };
 		D4FE4EC930543A0100A9886C /* BlockerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerStore.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		D42CCD0130501EC000CC90EF = {
 			isa = PBXGroup;
 			children = (
-				D42CCD1B30501ECF00CC90EF /* Ritma */,
+				D42CCD1B30501ECF00CC90EF /* Haven */,
 				D42CCD0B30501EC000CC90EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,15 +167,15 @@
 		D42CCD0B30501EC000CC90EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D42CCD0A30501EC000CC90EF /* Ritma.app */,
+				D42CCD0A30501EC000CC90EF /* Haven.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D42CCD1B30501ECF00CC90EF /* Ritma */ = {
+		D42CCD1B30501ECF00CC90EF /* Haven */ = {
 			isa = PBXGroup;
 			children = (
-				D4B6B5B830559B2E0035DDE7 /* Ritma.entitlements */,
+				D4B6B5B830559B2E0035DDE7 /* Haven.entitlements */,
 				D49731E53053306D002AFCF1 /* Info.plist */,
 				D42CCD343050205200CC90EF /* Utils */,
 				D42CCD333050204800CC90EF /* DesignSystem */,
@@ -184,10 +184,10 @@
 				D42CCD1F30501ED300CC90EF /* Views */,
 				D42CCD1830501ECF00CC90EF /* Assets.xcassets */,
 				D42CCD1930501ECF00CC90EF /* ContentView.swift */,
-				D42CCD1A30501ECF00CC90EF /* RitmaApp.swift */,
+				D42CCD1A30501ECF00CC90EF /* HavenApp.swift */,
 				ED9E9BE4931A62A5385545A2 /* StoreKit */,
 			);
-			path = Ritma;
+			path = Haven;
 			sourceTree = "<group>";
 		};
 		D42CCD1F30501ED300CC90EF /* Views */ = {
@@ -344,9 +344,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D42CCD0930501EC000CC90EF /* Ritma */ = {
+		D42CCD0930501EC000CC90EF /* Haven */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D42CCD1530501EC400CC90EF /* Build configuration list for PBXNativeTarget "Ritma" */;
+			buildConfigurationList = D42CCD1530501EC400CC90EF /* Build configuration list for PBXNativeTarget "Haven" */;
 			buildPhases = (
 				D42CCD0630501EC000CC90EF /* Sources */,
 				D42CCD0730501EC000CC90EF /* Frameworks */,
@@ -356,12 +356,12 @@
 			);
 			dependencies = (
 			);
-			name = Ritma;
+			name = Haven;
 			packageProductDependencies = (
 				D42CCD3730502E9500CC90EF /* Supabase */,
 			);
-			productName = Ritma;
-			productReference = D42CCD0A30501EC000CC90EF /* Ritma.app */;
+			productName = Haven;
+			productReference = D42CCD0A30501EC000CC90EF /* Haven.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -379,7 +379,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D42CCD0530501EC000CC90EF /* Build configuration list for PBXProject "Ritma" */;
+			buildConfigurationList = D42CCD0530501EC000CC90EF /* Build configuration list for PBXProject "Haven" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -396,7 +396,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D42CCD0930501EC000CC90EF /* Ritma */,
+				D42CCD0930501EC000CC90EF /* Haven */,
 			);
 		};
 /* End PBXProject section */
@@ -466,7 +466,7 @@
 				D49731DE30520305002AFCF1 /* BetsService.swift in Sources */,
 				D49731D03051FBF6002AFCF1 /* HomeTabView.swift in Sources */,
 				D49731CC3051FBD0002AFCF1 /* ResourcesView.swift in Sources */,
-				D42CCD1E30501ECF00CC90EF /* RitmaApp.swift in Sources */,
+				D42CCD1E30501ECF00CC90EF /* HavenApp.swift in Sources */,
 				D49731DC305202FC002AFCF1 /* BetLogEntry.swift in Sources */,
 				D49731E930533404002AFCF1 /* EmergencyReasonsStore.swift in Sources */,
 				D4A481EF305AB16E001F34D5 /* TrustedContactPromptOverlay.swift in Sources */,
@@ -605,7 +605,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Haven/Haven.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -616,7 +616,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Ritma/Info.plist;
+				INFOPLIST_FILE = Haven/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Haven;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -658,7 +658,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Ritma/Ritma.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Haven/Haven.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -669,7 +669,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Ritma/Info.plist;
+				INFOPLIST_FILE = Haven/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Haven;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -709,7 +709,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D42CCD0530501EC000CC90EF /* Build configuration list for PBXProject "Ritma" */ = {
+		D42CCD0530501EC000CC90EF /* Build configuration list for PBXProject "Haven" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D42CCD1330501EC400CC90EF /* Debug */,
@@ -718,7 +718,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D42CCD1530501EC400CC90EF /* Build configuration list for PBXNativeTarget "Ritma" */ = {
+		D42CCD1530501EC400CC90EF /* Build configuration list for PBXNativeTarget "Haven" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D42CCD1630501EC400CC90EF /* Debug */,
