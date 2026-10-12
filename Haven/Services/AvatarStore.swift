@@ -17,19 +17,20 @@ final class AvatarStore: ObservableObject {
     }
 
     @Published var vitalityScore: Double {
-        didSet { UserDefaults.standard.set(vitalityScore, forKey: "vitalityScore") }
+        didSet { UserScope.defaults.set(vitalityScore, forKey: "vitalityScore") }
     }
 
     @Published var pendingGain: VitalityGainEvent?
 
     private init() {
-        if let data = UserDefaults.standard.data(forKey: "avatarConfig"),
-           let decoded = try? JSONDecoder().decode(AvatarConfig.self, from: data) {
-            config = decoded
-        } else {
-            config = .default
-        }
-        vitalityScore = UserDefaults.standard.object(forKey: "vitalityScore") as? Double ?? 50
+        config = Self.loadConfig()
+        vitalityScore = Self.loadVitalityScore()
+    }
+
+    func reloadForCurrentUser() {
+        config = Self.loadConfig()
+        vitalityScore = Self.loadVitalityScore()
+        pendingGain = nil
     }
 
     func addVitality(_ amount: Double) {
@@ -49,9 +50,28 @@ final class AvatarStore: ObservableObject {
         }
     }
 
+    private static func loadConfig() -> AvatarConfig {
+        if let data = UserScope.defaults.data(forKey: "avatarConfig"),
+           let decoded = try? JSONDecoder().decode(AvatarConfig.self, from: data) {
+            return decoded
+        }
+        return .default
+    }
+
+    private static func loadVitalityScore() -> Double {
+        let defaults = UserScope.defaults
+        if let stored = defaults.object(forKey: "vitalityScore") as? Double {
+            return stored
+        }
+        if let initial = defaults.object(forKey: "initialVitalityScore") as? Double {
+            return initial
+        }
+        return 50
+    }
+
     private func saveConfig() {
         if let data = try? JSONEncoder().encode(config) {
-            UserDefaults.standard.set(data, forKey: "avatarConfig")
+            UserScope.defaults.set(data, forKey: "avatarConfig")
         }
     }
 }

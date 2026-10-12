@@ -51,8 +51,15 @@
             ReferencedContainer = "container:Haven.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "HAVEN_FORCE_UNSUBSCRIBED"
+            value = "1"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <StoreKitConfigurationFileReference
-         identifier = "Ritma/StoreKit/Products.storekit">
+         identifier = "../../Products.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

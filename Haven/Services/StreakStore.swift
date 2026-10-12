@@ -9,6 +9,10 @@ final class StreakStore: ObservableObject {
 
     private init() {}
 
+    func reloadForCurrentUser() {
+        streakDays = 0
+    }
+
     func refresh() async {
         await BetsService.shared.fetchEntries()
         let lastBetDate = BetsService.shared.entries.first?.date
@@ -26,20 +30,20 @@ final class StreakStore: ObservableObject {
     }
 
     private func accountCreationDate() -> Date {
-        if let stored = UserDefaults.standard.object(forKey: "accountCreationDate") as? Date {
+        if let stored = UserScope.defaults.object(forKey: "accountCreationDate") as? Date {
             return stored
         }
         let now = Date()
-        UserDefaults.standard.set(now, forKey: "accountCreationDate")
+        UserScope.defaults.set(now, forKey: "accountCreationDate")
         return now
     }
 
     private func applyDailyBonusIfNeeded() {
         let todayKey = Self.todayKey()
-        let lastBonusDate = UserDefaults.standard.string(forKey: "lastStreakBonusDate") ?? ""
+        let lastBonusDate = UserScope.defaults.string(forKey: "lastStreakBonusDate") ?? ""
         guard lastBonusDate != todayKey else { return }
 
-        UserDefaults.standard.set(todayKey, forKey: "lastStreakBonusDate")
+        UserScope.defaults.set(todayKey, forKey: "lastStreakBonusDate")
         guard streakDays > 0 else { return }
 
         AvatarStore.shared.addVitality(3)

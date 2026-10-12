@@ -14,17 +14,11 @@ final class ActivityCompletionStore: ObservableObject {
     }
 
     private init() {
-        let today = Self.todayKey()
-        let lastResetDate = UserDefaults.standard.string(forKey: "activityResetDate") ?? ""
+        completedToday = Self.loadCompletedToday()
+    }
 
-        if lastResetDate == today,
-           let saved = UserDefaults.standard.array(forKey: "completedActivitiesToday") as? [String] {
-            completedToday = Set(saved)
-        } else {
-            completedToday = []
-            UserDefaults.standard.set(today, forKey: "activityResetDate")
-            UserDefaults.standard.removeObject(forKey: "completedActivitiesToday")
-        }
+    func reloadForCurrentUser() {
+        completedToday = Self.loadCompletedToday()
     }
 
     func isCompleted(_ activity: ReplacementActivity) -> Bool {
@@ -35,15 +29,30 @@ final class ActivityCompletionStore: ObservableObject {
         guard !completedToday.contains(activity.id) else { return }
         guard !hasReachedDailyLimit else { return }
         completedToday.insert(activity.id)
-        UserDefaults.standard.set(Array(completedToday), forKey: "completedActivitiesToday")
+        UserScope.defaults.set(Array(completedToday), forKey: "completedActivitiesToday")
 
         AvatarStore.shared.addVitality(Double(activity.points))
     }
 
     func resetToday() {
         completedToday = []
-        UserDefaults.standard.set(Self.todayKey(), forKey: "activityResetDate")
-        UserDefaults.standard.removeObject(forKey: "completedActivitiesToday")
+        UserScope.defaults.set(Self.todayKey(), forKey: "activityResetDate")
+        UserScope.defaults.removeObject(forKey: "completedActivitiesToday")
+    }
+
+    private static func loadCompletedToday() -> Set<String> {
+        let today = todayKey()
+        let defaults = UserScope.defaults
+        let lastResetDate = defaults.string(forKey: "activityResetDate") ?? ""
+
+        if lastResetDate == today,
+           let saved = defaults.array(forKey: "completedActivitiesToday") as? [String] {
+            return Set(saved)
+        } else {
+            defaults.set(today, forKey: "activityResetDate")
+            defaults.removeObject(forKey: "completedActivitiesToday")
+            return []
+        }
     }
 
     private static func todayKey() -> String {

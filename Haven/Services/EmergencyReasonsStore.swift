@@ -9,13 +9,18 @@ final class EmergencyReasonsStore: ObservableObject {
         didSet { save() }
     }
 
+    @Published private(set) var setupCompleted: Bool
+
     private init() {
-        if let data = UserDefaults.standard.data(forKey: "emergencyReasons"),
-           let decoded = try? JSONDecoder().decode([EmergencyReason].self, from: data) {
-            reasons = decoded
-        } else {
-            reasons = []
-        }
+        let loaded = Self.loadReasons()
+        reasons = loaded
+        setupCompleted = Self.loadSetupCompleted(reasonCount: loaded.count)
+    }
+
+    func reloadForCurrentUser() {
+        let loaded = Self.loadReasons()
+        reasons = loaded
+        setupCompleted = Self.loadSetupCompleted(reasonCount: loaded.count)
     }
 
     func addReason(_ text: String) {
@@ -26,9 +31,26 @@ final class EmergencyReasonsStore: ObservableObject {
         reasons.remove(atOffsets: offsets)
     }
 
+    func completeSetup() {
+        setupCompleted = true
+        UserScope.defaults.set(true, forKey: "emergencySetupCompleted")
+    }
+
     private func save() {
         if let data = try? JSONEncoder().encode(reasons) {
-            UserDefaults.standard.set(data, forKey: "emergencyReasons")
+            UserScope.defaults.set(data, forKey: "emergencyReasons")
         }
+    }
+
+    private static func loadReasons() -> [EmergencyReason] {
+        if let data = UserScope.defaults.data(forKey: "emergencyReasons"),
+           let decoded = try? JSONDecoder().decode([EmergencyReason].self, from: data) {
+            return decoded
+        }
+        return []
+    }
+
+    private static func loadSetupCompleted(reasonCount: Int) -> Bool {
+        UserScope.defaults.bool(forKey: "emergencySetupCompleted") || reasonCount >= 3
     }
 }

@@ -3,7 +3,6 @@ import SwiftUI
 struct EmergencySetupView: View {
     @ObservedObject private var store = EmergencyReasonsStore.shared
     @State private var newReasonText = ""
-    @State private var goToHome = false
     @FocusState private var isFieldFocused: Bool
 
     var body: some View {
@@ -51,7 +50,7 @@ struct EmergencySetupView: View {
                 }
 
                 Button("Continuer") {
-                    goToHome = true
+                    store.completeSetup()
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 .padding(.horizontal, 28)
@@ -60,9 +59,6 @@ struct EmergencySetupView: View {
                 .opacity(store.reasons.count >= 3 ? 1 : 0.4)
                 .disabled(store.reasons.count < 3)
             }
-        }
-        .navigationDestination(isPresented: $goToHome) {
-            HomeTabView()
         }
         .navigationBarHidden(true)
     }

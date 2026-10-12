@@ -3,13 +3,14 @@ import SwiftUI
 struct HomeTabView: View {
     @ObservedObject private var avatarStore = AvatarStore.shared
     @ObservedObject private var badgeStore = BadgeStore.shared
+    @ObservedObject private var trustedContactStore = TrustedContactStore.shared
 
     var body: some View {
         ZStack {
             TabView {
-                DashboardView()
+                JourneyView()
                     .tabItem {
-                        Label("Dashboard", systemImage: "house.fill")
+                        Label("Parcours", systemImage: "map.fill")
                     }
 
                 JournalView()
@@ -51,6 +52,10 @@ struct HomeTabView: View {
                 .id(unlock.id)
                 .transition(.opacity)
                 .zIndex(1)
+            } else if trustedContactStore.pendingPrompt {
+                TrustedContactPromptOverlay(store: trustedContactStore)
+                    .transition(.opacity)
+                    .zIndex(2)
             }
         }
     }

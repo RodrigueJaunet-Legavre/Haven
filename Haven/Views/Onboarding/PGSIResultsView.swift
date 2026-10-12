@@ -29,6 +29,10 @@ struct PGSIResultsView: View {
     }
 
     private var estimatedAnnualLoss: Double {
+        // Le montant misé représente l'argent sorti du porte-monnaie pour la session,
+        // pas le cumul des mises individuelles. En pratique, ce budget de session est
+        // le plus souvent perdu en grande majorité (comportement de jeu jusqu'à épuisement
+        // du budget), d'où un taux de 80% plutôt qu'un simple taux de redistribution théorique.
         annualWagered * 0.8
     }
 
@@ -85,6 +89,12 @@ struct PGSIResultsView: View {
                 Button("Continuer") {
                     OnboardingScoreStore.shared.pgsiScore = score
                     OnboardingScoreStore.shared.finalizeVitalityScore()
+                    UserScope.defaults.set(AvatarStore.shared.vitalityScore, forKey: "initialVitalityScore")
+                    UserScope.defaults.set(score, forKey: "pgsiInitialScore")
+                    UserScope.defaults.set(category.rawValue, forKey: "pgsiInitialCategory")
+                    UserScope.defaults.set(Date(), forKey: "pgsiTestDate")
+                    UserScope.defaults.set(estimatedAnnualLoss, forKey: "estimatedAnnualLoss")
+                    OnboardingStatus.shared.markCompleted()
                     goToSignUp = true
                 }
                 .buttonStyle(PrimaryButtonStyle())

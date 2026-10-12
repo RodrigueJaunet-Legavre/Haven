@@ -90,6 +90,15 @@ final class BlockerStore: ObservableObject {
         pendingDisableDate = nil
     }
 
+    func resetAll() {
+        pendingDisableTimer?.invalidate()
+        pendingDisableTimer = nil
+        pendingDisableDate = nil
+        isBlockingEnabled = false
+        blockedDomains = []
+        selection = FamilyActivitySelection()
+    }
+
     func applyEssentialPack() {
         let legalDomains = Set(knownGamblingSites.map { $0.domain })
         blockedDomains = Array(legalDomains.union(essentialCasinoDomains)).sorted()

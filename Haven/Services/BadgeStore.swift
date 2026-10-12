@@ -14,8 +14,12 @@ final class BadgeStore: ObservableObject {
     @Published var pendingUnlocks: [BadgeUnlockEvent] = []
 
     private init() {
-        let saved = UserDefaults.standard.array(forKey: "unlockedBadgeIDs") as? [String] ?? []
-        unlockedBadgeIDs = Set(saved)
+        unlockedBadgeIDs = Self.loadUnlockedBadgeIDs()
+    }
+
+    func reloadForCurrentUser() {
+        unlockedBadgeIDs = Self.loadUnlockedBadgeIDs()
+        pendingUnlocks = []
     }
 
     func isUnlocked(_ badge: Badge) -> Bool {
@@ -29,12 +33,16 @@ final class BadgeStore: ObservableObject {
             newlyUnlocked.append(badge)
         }
         guard !newlyUnlocked.isEmpty else { return }
-        UserDefaults.standard.set(Array(unlockedBadgeIDs), forKey: "unlockedBadgeIDs")
+        UserScope.defaults.set(Array(unlockedBadgeIDs), forKey: "unlockedBadgeIDs")
         pendingUnlocks.append(contentsOf: newlyUnlocked.map { BadgeUnlockEvent(badge: $0) })
     }
 
     func dismissCurrentUnlock() {
         guard !pendingUnlocks.isEmpty else { return }
         pendingUnlocks.removeFirst()
+    }
+
+    private static func loadUnlockedBadgeIDs() -> Set<String> {
+        Set(UserScope.defaults.array(forKey: "unlockedBadgeIDs") as? [String] ?? [])
     }
 }

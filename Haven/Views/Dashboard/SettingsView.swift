@@ -4,10 +4,16 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var authService = AuthService.shared
     @ObservedObject private var trustedContactStore = TrustedContactStore.shared
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
 
     @State private var notificationsEnabled = UserDefaults.standard.object(forKey: "notificationsEnabled") as? Bool ?? true
     @State private var showSignOutConfirmation = false
-    @State private var showSignedOutAlert = false
+    @State private var isGeneratingPDF = false
+    @State private var pdfURL: URL?
+    @State private var showShareSheet = false
+    @State private var showDeleteConfirmation = false
+    @State private var isDeleting = false
+    @State private var deleteErrorMessage: String?
 
     var body: some View {
         NavigationStack {
@@ -31,7 +37,13 @@ struct SettingsView: View {
 
                         trustedContactCard
 
+                        exportCard
+
+                        privacyCard
+
                         signOutButton
+
+                        deleteAccountSection
                     }
                     .padding(.horizontal, 28)
                     .padding(.top, 20)
@@ -53,10 +65,26 @@ struct SettingsView: View {
                 }
                 Button("Annuler", role: .cancel) {}
             }
-            .alert("Déconnecté", isPresented: $showSignedOutAlert) {
+            .confirmationDialog("Supprimer définitivement ton compte ?", isPresented: $showDeleteConfirmation, titleVisibility: .visible) {
+                Button("Supprimer mon compte", role: .destructive) {
+                    Task { await deleteAccount() }
+                }
+                Button("Annuler", role: .cancel) {}
+            } message: {
+                Text("Ton compte et toutes tes données (journal, victoires, check-in, progression) seront effacés, sans retour possible, et le blocage de tes applications et sites sera désactivé. Si ton compte a été créé avec Apple, une confirmation Apple te sera demandée pour couper le lien avec Haven. Ton abonnement n'est pas annulé automatiquement : résilie-le dans les réglages de ton compte Apple.")
+            }
+            .alert("Suppression impossible", isPresented: Binding(
+                get: { deleteErrorMessage != nil },
+                set: { if !$0 { deleteErrorMessage = nil } }
+            )) {
                 Button("OK", role: .cancel) {}
             } message: {
-                Text("Relance l'application pour revenir à l'écran de connexion.")
+                Text(deleteErrorMessage ?? "")
+            }
+            .sheet(isPresented: $showShareSheet) {
+                if let pdfURL {
+                    ShareSheet(activityItems: [pdfURL])
+                }
             }
         }
     }
@@ -80,6 +108,44 @@ struct SettingsView: View {
                     .padding(.horizontal, 14)
                     .padding(.vertical, 10)
                     .background(RoundedRectangle(cornerRadius: 12).fill(Color.appSurfaceElevated))
+            }
+        }
+    }
+
+    private var exportCard: some View {
+        sectionCard(title: "Mes données") {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Génère un PDF récapitulatif (test initial, score de vitalité, badges, historique) à garder pour toi ou à montrer à un professionnel.")
+                    .font(.system(size: 12))
+                    .foregroundStyle(Color.appTextMuted)
+
+                Button {
+                    Task { await exportPDF() }
+                } label: {
+                    Text(isGeneratingPDF ? "Génération..." : "Exporter en PDF")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundStyle(Color.appAccent)
+                }
+                .disabled(isGeneratingPDF)
+            }
+        }
+    }
+
+    private var privacyCard: some View {
+        sectionCard(title: "Confidentialité") {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Tes données de santé sont traitées avec ton accord, que tu peux retirer à tout moment en supprimant ton compte.")
+                    .font(.system(size: 12))
+                    .foregroundStyle(Color.appTextMuted)
+
+                Link(destination: PrivacyPolicy.url) {
+                    HStack(spacing: 6) {
+                        Text("Politique de confidentialité")
+                        Image(systemName: "arrow.up.right.square")
+                    }
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Color.appAccent)
+                }
             }
         }
     }
@@ -116,22 +182,27 @@ struct SettingsView: View {
 
     private var subscriptionCard: some View {
         sectionCard(title: "Abonnement") {
-            HStack(spacing: 12) {
-                Image(systemName: "sparkles")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(Color.appGold)
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 12) {
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundStyle(Color.appGold)
 
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Essai gratuit en cours")
+                    Text(subscriptionManager.isSubscribed ? "Abonnement actif" : "Aucun abonnement actif")
                         .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundStyle(Color.appTextPrimary)
 
-                    Text("Gestion de l'abonnement à venir")
-                        .font(.system(size: 12))
-                        .foregroundStyle(Color.appTextMuted)
+                    Spacer()
                 }
 
-                Spacer()
+                Link(destination: URL(string: "https://apps.apple.com/account/subscriptions")!) {
+                    HStack(spacing: 6) {
+                        Text("Gérer mon abonnement")
+                        Image(systemName: "arrow.up.right.square")
+                    }
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Color.appAccent)
+                }
             }
         }
     }
@@ -166,9 +237,47 @@ struct SettingsView: View {
         }
     }
 
+    private var deleteAccountSection: some View {
+        VStack(spacing: 8) {
+            Button {
+                showDeleteConfirmation = true
+            } label: {
+                Text(isDeleting ? "Suppression..." : "Supprimer mon compte")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Color.appDanger)
+            }
+            .disabled(isDeleting)
+
+            Text("Efface définitivement ton compte et toutes tes données.")
+                .font(.system(size: 11))
+                .foregroundStyle(Color.appTextMuted)
+        }
+        .padding(.top, 4)
+    }
+
+    private func exportPDF() async {
+        isGeneratingPDF = true
+        let data = await PDFReportGenerator.generate()
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("Haven-rapport.pdf")
+        try? data.write(to: url)
+        pdfURL = url
+        isGeneratingPDF = false
+        showShareSheet = true
+    }
+
     private func signOut() async {
         try? await authService.signOut()
-        showSignedOutAlert = true
+    }
+
+    private func deleteAccount() async {
+        isDeleting = true
+        do {
+            try await authService.deleteAccount()
+        } catch {
+            deleteErrorMessage = (error as? LocalizedError)?.errorDescription
+                ?? "Ton compte n'a pas pu être supprimé pour le moment. Vérifie ta connexion et réessaie. Si ça persiste, contacte le support."
+        }
+        isDeleting = false
     }
 }
 

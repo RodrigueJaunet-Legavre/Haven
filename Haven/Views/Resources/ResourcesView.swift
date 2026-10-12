@@ -2,67 +2,96 @@ import SwiftUI
 
 struct ResourcesView: View {
     @ObservedObject private var completionStore = ActivityCompletionStore.shared
+    @State private var selectedTab: ResourcesTab = .activities
+
+    enum ResourcesTab: String, CaseIterable {
+        case activities = "Activités"
+        case videos = "Vidéos"
+    }
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.appBackground.ignoresSafeArea()
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 32) {
-                        VStack(alignment: .leading, spacing: 6) {
-                            HStack {
-                                Text("Activités de remplacement")
-                                    .font(.appHeadline)
-                                    .foregroundStyle(Color.appTextPrimary)
-
-                                Spacer()
-
-                                Text("\(completionStore.completedToday.count)/\(ActivityCompletionStore.maxActivitiesPerDay) aujourd'hui")
-                                    .font(.system(size: 12, weight: .semibold, design: .default))
-                                    .foregroundStyle(Color.appTextMuted)
-                            }
-
-                            Text("Des alternatives qui activent le même circuit de récompense, sans le risque. \(ActivityCompletionStore.maxActivitiesPerDay) validations par jour maximum, une par activité.")
-                                .font(.system(size: 13))
-                                .foregroundStyle(Color.appTextSecondary)
-                        }
-
-                        VStack(spacing: 12) {
-                            ForEach(replacementActivities) { activity in
-                                activityRow(activity)
-                            }
-                        }
-
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("Vidéos")
-                                .font(.appHeadline)
-                                .foregroundStyle(Color.appTextPrimary)
-
-                            Text("Avec des professionnels de santé, addictologues et psychologues.")
-                                .font(.system(size: 13))
-                                .foregroundStyle(Color.appTextSecondary)
-                        }
-                        .padding(.top, 8)
-
-                        VStack(spacing: 12) {
-                            ForEach(resourceVideos) { video in
-                                NavigationLink {
-                                    VideoDetailView(video: video)
-                                } label: {
-                                    videoRow(video)
-                                }
-                            }
+                VStack(spacing: 0) {
+                    Picker("Catégorie", selection: $selectedTab) {
+                        ForEach(ResourcesTab.allCases, id: \.self) { tab in
+                            Text(tab.rawValue).tag(tab)
                         }
                     }
-                    .padding(.horizontal, 28)
-                    .padding(.top, 20)
-                    .padding(.bottom, 40)
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 12)
+                    .padding(.bottom, 8)
+
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 20) {
+                            if selectedTab == .activities {
+                                activitiesContent
+                            } else {
+                                videosContent
+                            }
+                        }
+                        .padding(.horizontal, 28)
+                        .padding(.top, 12)
+                        .padding(.bottom, 40)
+                    }
                 }
             }
             .navigationTitle("Ressources")
             .toolbarBackground(Color.appBackground, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
+        }
+    }
+
+    @ViewBuilder
+    private var activitiesContent: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("Activités de remplacement")
+                    .font(.appHeadline)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                Spacer()
+
+                Text("\(completionStore.completedToday.count)/\(ActivityCompletionStore.maxActivitiesPerDay) aujourd'hui")
+                    .font(.system(size: 12, weight: .semibold, design: .default))
+                    .foregroundStyle(Color.appTextMuted)
+            }
+
+            Text("Des alternatives qui activent le même circuit de récompense, sans le risque. \(ActivityCompletionStore.maxActivitiesPerDay) validations par jour maximum, une par activité.")
+                .font(.system(size: 13))
+                .foregroundStyle(Color.appTextSecondary)
+        }
+
+        VStack(spacing: 12) {
+            ForEach(replacementActivities) { activity in
+                activityRow(activity)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var videosContent: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("Vidéos")
+                .font(.appHeadline)
+                .foregroundStyle(Color.appTextPrimary)
+
+            Text("Des explications et des témoignages pour comprendre l'addiction aux jeux d'argent.")
+                .font(.system(size: 13))
+                .foregroundStyle(Color.appTextSecondary)
+        }
+
+        VStack(spacing: 12) {
+            ForEach(resourceVideos) { video in
+                NavigationLink {
+                    VideoDetailView(video: video)
+                } label: {
+                    videoRow(video)
+                }
+            }
         }
     }
 
@@ -121,15 +150,7 @@ struct ResourcesView: View {
 
     private func videoRow(_ video: ResourceVideo) -> some View {
         HStack(spacing: 14) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.appSurfaceElevated)
-                    .frame(width: 64, height: 64)
-
-                Image(systemName: "play.circle.fill")
-                    .font(.system(size: 24))
-                    .foregroundStyle(Color.appTextMuted)
-            }
+            videoThumbnail(video)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(video.title)
@@ -148,6 +169,32 @@ struct ResourcesView: View {
         .background(
             RoundedRectangle(cornerRadius: 18).fill(Color.appSurface)
         )
+    }
+
+    private func videoThumbnail(_ video: ResourceVideo) -> some View {
+        ZStack {
+            if let url = video.thumbnailURL {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    default:
+                        Color.appSurfaceElevated
+                    }
+                }
+            } else {
+                Color.appSurfaceElevated
+            }
+
+            Image(systemName: "play.circle.fill")
+                .font(.system(size: 26))
+                .foregroundStyle(video.thumbnailURL == nil ? Color.appTextMuted : Color.white.opacity(0.92))
+                .shadow(color: .black.opacity(video.thumbnailURL == nil ? 0 : 0.5), radius: 4)
+        }
+        .frame(width: 100, height: 64)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 

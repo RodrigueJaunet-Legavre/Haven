@@ -271,14 +271,16 @@ struct EmergencyView: View {
                             )
                         }
 
-                        NavigationLink {
-                            VideoDetailView(video: resourceVideos[0])
-                        } label: {
-                            quickLinkRow(
-                                icon: "play.circle.fill",
-                                title: "Pourquoi ne pas replonger",
-                                subtitle: "Par un addictologue · 6 min"
-                            )
+                        if let video = emergencyVideo {
+                            NavigationLink {
+                                VideoDetailView(video: video)
+                            } label: {
+                                quickLinkRow(
+                                    icon: "play.circle.fill",
+                                    title: "Comprendre ton envie de jouer",
+                                    subtitle: "Psychologue clinicienne · \(video.duration)"
+                                )
+                            }
                         }
                     }
                     .padding(.horizontal, 28)

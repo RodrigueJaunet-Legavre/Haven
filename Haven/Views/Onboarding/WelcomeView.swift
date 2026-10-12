@@ -17,37 +17,53 @@ struct WelcomeView: View {
 
     private let crescendoAmounts = [25, 40, 55, 70, 85, 100]
 
+    private let benefits: [(icon: String, text: String)] = [
+        ("map.fill", "Un parcours de 30 jours, une étape par jour"),
+        ("lock.shield.fill", "Blocage des sites et applications de paris"),
+        ("exclamationmark.triangle.fill", "Un bouton d'urgence quand l'envie arrive")
+    ]
+
     var body: some View {
-        ZStack(alignment: .top) {
-            backgroundLayer
+        GeometryReader { geo in
+            let isCompact = geo.size.height < 700
 
-            VStack(alignment: .leading, spacing: 0) {
-                Spacer(minLength: 90)
+            ZStack(alignment: .top) {
+                backgroundLayer
 
-                neonLossZone
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer(minLength: isCompact ? 70 : 90)
 
-                Spacer()
+                    neonLossZone(height: isCompact ? 90 : 120)
 
-                totalLostPill
-                    .padding(.horizontal, 28)
+                    Spacer(minLength: 8)
 
-                headlineBlock
-                    .padding(.horizontal, 28)
-                    .padding(.top, 20)
+                    totalLostPill
+                        .padding(.horizontal, 28)
 
-                Spacer()
+                    headlineBlock
+                        .padding(.horizontal, 28)
+                        .padding(.top, 20)
 
-                actionRow
-                    .padding(.horizontal, 28)
-                    .padding(.bottom, 48)
-                    .opacity(isVisible ? 1 : 0)
-                    .offset(y: isVisible ? 0 : 16)
-            }
+                    if !isCompact {
+                        benefitsList
+                            .padding(.horizontal, 28)
+                            .padding(.top, 20)
+                    }
 
-            if let notification = currentNotification {
-                NotificationBanner(notification: notification)
-                    .offset(y: notificationOffset)
-                    .padding(.top, 12)
+                    Spacer(minLength: 16)
+
+                    actionRow
+                        .padding(.horizontal, 28)
+                        .padding(.bottom, 32)
+                        .opacity(isVisible ? 1 : 0)
+                        .offset(y: isVisible ? 0 : 16)
+                }
+
+                if let notification = currentNotification {
+                    NotificationBanner(notification: notification)
+                        .offset(y: notificationOffset)
+                        .padding(.top, 12)
+                }
             }
         }
         .navigationDestination(isPresented: $goToGamesSelection) {
@@ -161,7 +177,7 @@ struct WelcomeView: View {
         return minRadius + ratio * (maxRadius - minRadius)
     }
 
-    private var neonLossZone: some View {
+    private func neonLossZone(height: CGFloat) -> some View {
         ZStack {
             if let amount = neonAmount {
                 Text("-\(amount) €")
@@ -174,13 +190,13 @@ struct WelcomeView: View {
                     .opacity(neonOpacity * neonFlicker)
             }
         }
-        .frame(height: 120)
+        .frame(height: height)
         .frame(maxWidth: .infinity)
     }
 
     private var totalLostPill: some View {
         HStack(spacing: 6) {
-            Text("perdu depuis l'ouverture")
+            Text("pertes simulées")
                 .font(.system(size: 12))
                 .foregroundStyle(Color.appTextMuted)
 
@@ -203,32 +219,63 @@ struct WelcomeView: View {
 
     private var headlineBlock: some View {
         VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 6) {
+                Image(systemName: "leaf.fill")
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(Color.appAccent)
+
+                Text("HAVEN")
+                    .font(.system(size: 11, weight: .semibold))
+                    .tracking(1.4)
+                    .foregroundStyle(Color.appAccent)
+            }
+
             Text("Reprends la main.")
                 .font(.appDisplay)
                 .tracking(-1)
                 .foregroundStyle(Color.appTextPrimary)
                 .shadow(color: Color.appAccent.opacity(0.6), radius: 12)
 
-            Text("Haven t'accompagne pour sortir des jeux d'argent, à ton rythme.")
+            Text("Haven t'accompagne pour arrêter les jeux d'argent : paris sportifs, casino, poker.")
                 .font(.appBody)
                 .foregroundStyle(Color.appTextSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .opacity(isVisible ? 1 : 0)
+        .offset(y: isVisible ? 0 : 16)
+    }
+
+    private var benefitsList: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(benefits, id: \.text) { benefit in
+                HStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(Color.appAccentMuted)
+                            .frame(width: 30, height: 30)
+
+                        Image(systemName: benefit.icon)
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(Color.appAccent)
+                    }
+
+                    Text(benefit.text)
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(Color.appTextPrimary)
+                }
+            }
         }
         .opacity(isVisible ? 1 : 0)
         .offset(y: isVisible ? 0 : 16)
     }
 
     private var actionRow: some View {
-        VStack(spacing: 14) {
-            HStack(spacing: 10) {
-                ghostAction(title: "Retirer")
-                ghostAction(title: "Déposer")
-            }
-
+        VStack(spacing: 12) {
             Button {
                 goToGamesSelection = true
             } label: {
                 HStack {
-                    Text("Arrêter")
+                    Text("Commencer le test")
                     Spacer()
                     Image(systemName: "arrow.right")
                         .font(.system(size: 15, weight: .semibold))
@@ -236,9 +283,10 @@ struct WelcomeView: View {
             }
             .buttonStyle(StopButtonStyle())
 
-            Text("Fais le test en 2 minutes pour évaluer ta situation")
+            Text("2 minutes pour évaluer ta situation. Tes réponses restent sur ton téléphone.")
                 .font(.appCaption)
                 .foregroundStyle(Color.appTextMuted)
+                .multilineTextAlignment(.center)
 
             Button {
                 goToLogin = true
@@ -247,23 +295,8 @@ struct WelcomeView: View {
                     .font(.system(size: 13, weight: .medium))
                     .foregroundStyle(Color.appAccent)
             }
-            .padding(.top, 4)
+            .padding(.top, 2)
         }
-    }
-
-    private func ghostAction(title: String) -> some View {
-        Text(title)
-            .font(.system(size: 15, weight: .semibold, design: .default))
-            .foregroundStyle(Color.appTextMuted)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-            .background(
-                Capsule().fill(Color.appSurface)
-            )
-            .overlay(
-                Capsule().stroke(Color.appBorder, lineWidth: 1)
-            )
-            .opacity(0.5)
     }
 
     private var backgroundLayer: some View {

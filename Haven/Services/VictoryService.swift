@@ -12,7 +12,12 @@ final class VictoryService: ObservableObject {
     private let client = SupabaseService.shared.client
 
     private init() {
-        lastEmergencyVictoryDate = UserDefaults.standard.object(forKey: "lastEmergencyVictoryDate") as? Date
+        lastEmergencyVictoryDate = Self.loadLastEmergencyVictoryDate()
+    }
+
+    func reloadForCurrentUser() {
+        entries = []
+        lastEmergencyVictoryDate = Self.loadLastEmergencyVictoryDate()
     }
 
     var canLogEmergencyVictory: Bool {
@@ -59,6 +64,10 @@ final class VictoryService: ObservableObject {
         guard canLogEmergencyVictory else { return }
         await addEntry(note: nil)
         lastEmergencyVictoryDate = Date()
-        UserDefaults.standard.set(lastEmergencyVictoryDate, forKey: "lastEmergencyVictoryDate")
+        UserScope.defaults.set(lastEmergencyVictoryDate, forKey: "lastEmergencyVictoryDate")
+    }
+
+    private static func loadLastEmergencyVictoryDate() -> Date? {
+        UserScope.defaults.object(forKey: "lastEmergencyVictoryDate") as? Date
     }
 }

@@ -12,6 +12,10 @@ final class CheckInService: ObservableObject {
 
     private init() {}
 
+    func reloadForCurrentUser() {
+        entries = []
+    }
+
     var hasCheckedInToday: Bool {
         guard let last = entries.first else { return false }
         return Calendar.current.isDateInToday(last.date)

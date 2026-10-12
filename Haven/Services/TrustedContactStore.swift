@@ -6,11 +6,11 @@ final class TrustedContactStore: ObservableObject {
     static let shared = TrustedContactStore()
 
     @Published var name: String {
-        didSet { UserDefaults.standard.set(name, forKey: "trustedContactName") }
+        didSet { UserScope.defaults.set(name, forKey: "trustedContactName") }
     }
 
     @Published var phone: String {
-        didSet { UserDefaults.standard.set(phone, forKey: "trustedContactPhone") }
+        didSet { UserScope.defaults.set(phone, forKey: "trustedContactPhone") }
     }
 
     @Published var pendingPrompt = false
@@ -20,13 +20,19 @@ final class TrustedContactStore: ObservableObject {
     }
 
     private var emergencyOpenTimestamps: [Date] {
-        get { (UserDefaults.standard.array(forKey: "emergencyOpenTimestamps") as? [Date]) ?? [] }
-        set { UserDefaults.standard.set(newValue, forKey: "emergencyOpenTimestamps") }
+        get { (UserScope.defaults.array(forKey: "emergencyOpenTimestamps") as? [Date]) ?? [] }
+        set { UserScope.defaults.set(newValue, forKey: "emergencyOpenTimestamps") }
     }
 
     private init() {
-        name = UserDefaults.standard.string(forKey: "trustedContactName") ?? ""
-        phone = UserDefaults.standard.string(forKey: "trustedContactPhone") ?? ""
+        name = UserScope.defaults.string(forKey: "trustedContactName") ?? ""
+        phone = UserScope.defaults.string(forKey: "trustedContactPhone") ?? ""
+    }
+
+    func reloadForCurrentUser() {
+        name = UserScope.defaults.string(forKey: "trustedContactName") ?? ""
+        phone = UserScope.defaults.string(forKey: "trustedContactPhone") ?? ""
+        pendingPrompt = false
     }
 
     func recordEmergencyOpen() {

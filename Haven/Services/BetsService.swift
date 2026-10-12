@@ -12,6 +12,10 @@ final class BetsService: ObservableObject {
 
     private init() {}
 
+    func reloadForCurrentUser() {
+        entries = []
+    }
+
     func fetchEntries() async {
         guard let userId = AuthService.shared.currentUserId else { return }
         do {
@@ -30,6 +34,8 @@ final class BetsService: ObservableObject {
 
     func addEntry(typeJeu: String, montant: Double, gainPerte: Double?) async {
         guard let userId = AuthService.shared.currentUserId else { return }
+
+        _ = try? await client.auth.session
 
         struct NewBet: Encodable {
             let user_id: UUID

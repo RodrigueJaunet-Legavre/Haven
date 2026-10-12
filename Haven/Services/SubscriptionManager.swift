@@ -1,77 +1,128 @@
-import Combine
 import StoreKit
+import SwiftUI
+import Combine
 
 @MainActor
 final class SubscriptionManager: ObservableObject {
     static let shared = SubscriptionManager()
 
-    @Published private(set) var isSubscribed = false
-    @Published private(set) var products: [Product] = []
+    static let monthlyProductID = "haven.premium.monthly"
 
-    private let productIDs = ["com.haven.subscription.monthly"]
-    private var updateListenerTask: Task<Void, Error>?
+    @Published var isSubscribed = false
+    @Published var product: Product?
+    @Published var isLoading = false
+    @Published var errorMessage: String?
+    @Published var hasCheckedSubscription = false
+
+    private var updatesTask: Task<Void, Never>?
+
+    #if DEBUG
+    private var debugSimulatedPurchase = false
+
+    private var debugForcesUnsubscribed: Bool {
+        ProcessInfo.processInfo.environment["HAVEN_FORCE_UNSUBSCRIBED"] == "1"
+    }
+    #endif
 
     private init() {
-        updateListenerTask = listenForTransactions()
+        updatesTask = listenForTransactionUpdates()
         Task {
-            await loadProducts()
-            await refreshEntitlements()
+            await loadProduct()
+            await refreshSubscriptionStatus()
+            hasCheckedSubscription = true
         }
     }
 
     deinit {
-        updateListenerTask?.cancel()
+        updatesTask?.cancel()
     }
 
-    func loadProducts() async {
+    func loadProduct() async {
         do {
-            products = try await Product.products(for: productIDs)
+            let products = try await Product.products(for: [Self.monthlyProductID])
+            product = products.first
+            if product == nil {
+                print("🔴 HAVEN DEBUG — aucun produit ne correspond à l'ID \(Self.monthlyProductID)")
+            }
         } catch {
-            print("Erreur chargement produits: \(error)")
+            print("🔴 HAVEN DEBUG — erreur: \(error)")
+            errorMessage = "Impossible de charger l'abonnement pour le moment."
         }
     }
 
-    func purchase(_ product: Product) async throws {
-        let result = try await product.purchase()
-        switch result {
-        case .success(let verification):
-            let transaction = try checkVerified(verification)
-            await transaction.finish()
-            await refreshEntitlements()
-        case .userCancelled, .pending:
-            break
-        @unknown default:
-            break
+    func purchase() async {
+        #if DEBUG
+        if debugForcesUnsubscribed {
+            debugSimulatedPurchase = true
+            isSubscribed = true
+            return
         }
+        #endif
+
+        guard let product else {
+            errorMessage = "Abonnement indisponible pour le moment."
+            return
+        }
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            let result = try await product.purchase()
+            switch result {
+            case .success(let verification):
+                let transaction = try checkVerified(verification)
+                await transaction.finish()
+                await refreshSubscriptionStatus()
+            case .userCancelled:
+                break
+            case .pending:
+                errorMessage = "Achat en attente de validation."
+            @unknown default:
+                break
+            }
+        } catch {
+            errorMessage = "L'achat n'a pas pu aboutir."
+        }
+        isLoading = false
     }
 
     func restorePurchases() async {
+        isLoading = true
         try? await AppStore.sync()
-        await refreshEntitlements()
+        await refreshSubscriptionStatus()
+        isLoading = false
     }
 
-    private func refreshEntitlements() async {
-        var active = false
+    func refreshSubscriptionStatus() async {
+        #if DEBUG
+        if debugForcesUnsubscribed {
+            isSubscribed = debugSimulatedPurchase
+            return
+        }
+        #endif
+
+        var hasActiveSubscription = false
         for await result in Transaction.currentEntitlements {
-            if let transaction = try? checkVerified(result), transaction.productType == .autoRenewable {
-                active = true
+            if let transaction = try? checkVerified(result), transaction.productID == Self.monthlyProductID {
+                hasActiveSubscription = true
             }
         }
-        isSubscribed = active
+        isSubscribed = hasActiveSubscription
     }
 
-    private func listenForTransactions() -> Task<Void, Error> {
-        Task.detached {
+    private func listenForTransactionUpdates() -> Task<Void, Never> {
+        Task.detached { [weak self] in
             for await result in Transaction.updates {
-                if let transaction = try? await self.checkVerified(result) {
+                guard let self else { continue }
+                if let transaction = try? self.checkVerified(result) {
                     await transaction.finish()
-                    await self.refreshEntitlements()
+                    await self.refreshSubscriptionStatus()
                 }
             }
         }
     }
 
-    private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
+    nonisolated private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
         case .unverified:
             throw StoreError.failedVerification

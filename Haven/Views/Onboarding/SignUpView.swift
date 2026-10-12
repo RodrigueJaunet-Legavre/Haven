@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 struct SignUpView: View {
     @StateObject private var authService = AuthService.shared
@@ -9,6 +10,7 @@ struct SignUpView: View {
     @State private var errorMessage: String?
     @State private var isLoading = false
     @State private var goToHome = false
+    @State private var currentNonce: String?
 
     init(startInSignUpMode: Bool = true) {
         _isSignUpMode = State(initialValue: startInSignUpMode)
@@ -72,6 +74,19 @@ struct SignUpView: View {
                 }
                 .padding(.horizontal, 28)
 
+                SignInWithAppleButton(.signIn) { request in
+                    let nonce = AppleSignInHelper.randomNonceString()
+                    currentNonce = nonce
+                    request.requestedScopes = [.email]
+                    request.nonce = AppleSignInHelper.sha256(nonce)
+                } onCompletion: { result in
+                    Task { await handleAppleSignIn(result) }
+                }
+                .signInWithAppleButtonStyle(.white)
+                .frame(height: 50)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .padding(.horizontal, 28)
+
                 Button {
                     Task { await submitGoogle() }
                 } label: {
@@ -88,6 +103,10 @@ struct SignUpView: View {
                     )
                 }
                 .padding(.horizontal, 28)
+
+                Link("Politique de confidentialité", destination: PrivacyPolicy.url)
+                    .font(.system(size: 12))
+                    .foregroundStyle(Color.appTextMuted)
 
                 Spacer()
             }
@@ -147,6 +166,32 @@ struct SignUpView: View {
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    private func handleAppleSignIn(_ result: Result<ASAuthorization, Error>) async {
+        switch result {
+        case .success(let authorization):
+            guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
+                  let identityTokenData = credential.identityToken,
+                  let identityToken = String(data: identityTokenData, encoding: .utf8),
+                  let nonce = currentNonce else {
+                errorMessage = "Connexion Apple impossible."
+                return
+            }
+            isLoading = true
+            errorMessage = nil
+            do {
+                try await authService.signInWithApple(idToken: identityToken, nonce: nonce)
+                goToHome = true
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            isLoading = false
+        case .failure(let error):
+            if (error as NSError).code != ASAuthorizationError.canceled.rawValue {
+                errorMessage = "Connexion Apple impossible."
+            }
+        }
     }
 }
 

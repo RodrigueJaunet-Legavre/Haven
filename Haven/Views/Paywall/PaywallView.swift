@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PaywallView: View {
+    @ObservedObject private var subscriptionManager = SubscriptionManager.shared
     @State private var isVisible = false
     @State private var goToSignUp = false
 
@@ -55,10 +56,34 @@ struct PaywallView: View {
                             .multilineTextAlignment(.center)
                     }
 
-                    Button("Commencer l'essai gratuit") {
-                        goToSignUp = true
+                    Button(subscriptionManager.isLoading ? "..." : "Commencer l'essai gratuit") {
+                        Task {
+                            await subscriptionManager.purchase()
+                            if subscriptionManager.isSubscribed {
+                                goToSignUp = true
+                            }
+                        }
                     }
                     .buttonStyle(PrimaryButtonStyle())
+                    .disabled(subscriptionManager.isLoading || subscriptionManager.product == nil)
+
+                    if let errorMessage = subscriptionManager.errorMessage {
+                        Text(errorMessage)
+                            .font(.system(size: 12))
+                            .foregroundStyle(Color.appDanger)
+                            .multilineTextAlignment(.center)
+                    }
+
+                    Button("Restaurer mes achats") {
+                        Task {
+                            await subscriptionManager.restorePurchases()
+                            if subscriptionManager.isSubscribed {
+                                goToSignUp = true
+                            }
+                        }
+                    }
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(Color.appTextMuted)
 
                     Text("L'essai gratuit est nécessaire pour accéder à l'app.")
                         .font(.system(size: 11))
