@@ -81,7 +81,7 @@
               "locale" : "en_US"
             }
           ],
-          "productID" : "haven.premium.monthly",
+          "productID" : "haven.premium.monthly1",
           "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Abonnement mensuel",
           "subscriptionGroupID" : "4DC24A3D",

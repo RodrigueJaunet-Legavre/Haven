@@ -6,7 +6,7 @@ import Combine
 final class SubscriptionManager: ObservableObject {
     static let shared = SubscriptionManager()
 
-    static let monthlyProductID = "haven.premium.monthly"
+    static let monthlyProductID = "haven.premium.monthly1"
 
     @Published var isSubscribed = false
     @Published var product: Product?
